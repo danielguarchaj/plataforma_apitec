@@ -21,7 +21,6 @@ const navbar = `
       </a>
   </div>
 
-
   <a class="navbar-logo" href="Dashboard.Default.html">
       <span class="logo d-none d-xs-block"></span>
       <span class="logo-mobile d-block d-xs-none"></span>
@@ -119,28 +118,28 @@ const navbar = `
 const mainMenu = `
   <div class="scroll">
     <ul class="list-unstyled">
-      <li class="main-menu-item active">
+      <li class="main-menu-item dashboard-menu-item active">
           <a href="index.html">
               <i class="simple-icon-home"></i>
               <span>Dashboard</span>
           </a>
       </li>
-      <li class="main-menu-item">
+      <li class="main-menu-item material-menu-item">
           <a href="#material-apoyo">
             <i class="iconsmind-Digital-Drawing"></i> Material de apoyo
           </a>
       </li>
-      <li class="main-menu-item">
+      <li class="main-menu-item quizes-menu-item">
         <a href="#">
           <i class="iconsmind-Brain"></i> Quizes
         </a>
       </li>
-      <li class="main-menu-item">
+      <li class="main-menu-item bolsa-menu-item">
           <a href="#bolsa-trabajo">
               <i class="iconsmind-Pantone"></i> Bolsa de trabajo
           </a>
       </li>
-      <li class="main-menu-item">
+      <li class="main-menu-item academica-menu-item">
           <a href="#area-academica">
               <i class="iconsmind-Pencil"></i> Área académica
           </a>
@@ -153,17 +152,17 @@ const subMenu = `
   <div class="scroll">
     <ul class="list-unstyled" data-link="material-apoyo">
         <li>
-          <a href="#">
+          <a href="libros.html">
             <i class="iconsmind-Open-Book"></i>Libros
           </a>
         </li>
         <li>
-          <a href="#">
-            <i class="iconsmind-Video-5"></i>Videos
+          <a href="videos_tutoriales.html">
+            <i class="iconsmind-Video-5"></i>Videos y Tutoriales
           </a>
         </li>
         <li>
-          <a href="#">
+          <a href="discusiones.html">
             <i class="simple-icon-cup"></i>Discusiones en linea
           </a>
         </li>

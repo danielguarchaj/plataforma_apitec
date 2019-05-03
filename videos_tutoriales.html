@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Dore jQuery</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="font/iconsmind/style.css" />
+  <link rel="stylesheet" href="font/simple-line-icons/css/simple-line-icons.css" />
+  <link rel="stylesheet" href="css/vendor/bootstrap.min.css" />
+  <link rel="stylesheet" href="css/vendor/jquery.contextMenu.min.css" />
+  <link rel="stylesheet" href="css/vendor/perfect-scrollbar.css" />
+  <link rel="stylesheet" href="css/main.css" />
+</head>
+
+<body id="app-container" class="menu-default show-spinner">
+  <div class="navbar fixed-top" id="navbar"></div>
+  <div class="sidebar">
+      <div class="main-menu" id="mainmenu"></div>
+      <div class="sub-menu" id="submenu"></div>
+  </div>
+  <main>
+    <div class="container-fluid disable-text-selection">
+      <div class="row">
+        <div class="col-12">
+          <div class="mb-3">
+            <h1>Videos and tutorials</h1>
+            <div class="float-sm-right text-zero">
+              <button type="button" class="btn btn-primary btn-lg top-right-button mr-1">ADD NEW</button>
+
+              <div class="btn-group">
+                <div class="btn btn-primary btn-lg pl-4 pr-0 check-button">
+                  <label class="custom-control custom-checkbox mb-0 d-inline-block">
+                    <input type="checkbox" class="custom-control-input" id="checkAll">
+                    <span class="custom-control-label"></span>
+                  </label>
+                </div>
+                <button type="button" class="btn btn-lg btn-primary dropdown-toggle dropdown-toggle-split pl-2 pr-2"
+                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <span class="sr-only">Toggle Dropdown</span>
+                </button>
+                <div class="dropdown-menu dropdown-menu-right">
+                  <a class="dropdown-item" href="#">Action</a>
+                  <a class="dropdown-item" href="#">Another action</a>
+                </div>
+              </div>
+            </div>
+            <nav class="breadcrumb-container d-none d-sm-block d-lg-inline-block" aria-label="breadcrumb">
+              <ol class="breadcrumb pt-0">
+                <li class="breadcrumb-item">
+                  <a href="#">Home</a>
+                </li>
+                <li class="breadcrumb-item">
+                  <a href="#">Library</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">Data</li>
+              </ol>
+            </nav>
+
+          </div>
+
+          <div class="mb-2">
+            <a class="btn pt-0 pl-0 d-inline-block d-md-none" data-toggle="collapse" href="#displayOptions"
+              role="button" aria-expanded="true" aria-controls="displayOptions">
+              Display Options
+              <i class="simple-icon-arrow-down align-middle"></i>
+            </a>
+            <div class="collapse d-md-block" id="displayOptions">
+              <div class="d-block d-md-inline-block">
+                <div class="btn-group float-md-left mr-1 mb-1">
+                  <button class="btn btn-outline-dark btn-xs dropdown-toggle" type="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    Order By
+                  </button>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                  </div>
+                </div>
+                <div class="search-sm d-inline-block float-md-left mr-1 mb-1 align-top">
+                  <input placeholder="Search...">
+                </div>
+              </div>
+              <div class="float-md-right">
+                <span class="text-muted text-small">Displaying 1-10 of 210 items </span>
+                <button class="btn btn-outline-dark btn-xs dropdown-toggle" type="button" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
+                  20
+                </button>
+                <div class="dropdown-menu dropdown-menu-right">
+                  <a class="dropdown-item" href="#">10</a>
+                  <a class="dropdown-item active" href="#">20</a>
+                  <a class="dropdown-item" href="#">30</a>
+                  <a class="dropdown-item" href="#">50</a>
+                  <a class="dropdown-item" href="#">100</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="separator mb-5"></div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12 list" data-check-all="checkAll">
+
+          <div class="card d-flex flex-row mb-3">
+            <a class="d-flex" href="#">
+              <img src="img/python.png" alt="Python course" class="list-thumbnail responsive border-0" />
+            </a>
+            <div class="pl-2 d-flex flex-grow-1 min-width-zero">
+              <div
+                class="card-body align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero align-items-lg-center">
+                <a href="#" class="w-40 w-sm-100">
+                  <p class="list-item-heading mb-1 truncate">Python basics</p>
+                </a>
+                <p class="mb-1 text-muted text-small w-15 w-sm-100">Python course</p>
+                <p class="mb-1 text-muted text-small w-15 w-sm-100">13.04.2018</p>
+                <div class="w-15 w-sm-100">
+                  <span class="badge badge-pill badge-primary">Completed</span>
+                </div>
+              </div>
+
+              <div class="custom-control custom-checkbox pl-1 align-self-center pr-4">
+                <label class="custom-control custom-checkbox mb-0">
+                  <input type="checkbox" class="custom-control-input">
+                  <span class="custom-control-label"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="card d-flex flex-row mb-3">
+            <a class="d-flex" href="#">
+              <img src="img/javascript.png" alt="Javascript course" class="list-thumbnail responsive border-0" />
+            </a>
+            <div class="pl-2 d-flex flex-grow-1 min-width-zero">
+              <div
+                class="card-body align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero align-items-lg-center">
+                <a href="#" class="w-40 w-sm-100">
+                  <p class="list-item-heading mb-1 truncate">Javascript basics</p>
+                </a>
+                <p class="mb-1 text-muted text-small w-15 w-sm-100">Javascript course</p>
+                <p class="mb-1 text-muted text-small w-15 w-sm-100">13.04.2018</p>
+                <div class="w-15 w-sm-100">
+                  <span class="badge badge-pill badge-primary">Completed</span>
+                </div>
+              </div>
+
+              <div class="custom-control custom-checkbox pl-1 align-self-center pr-4">
+                <label class="custom-control custom-checkbox mb-0">
+                  <input type="checkbox" class="custom-control-input">
+                  <span class="custom-control-label"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="card d-flex flex-row mb-3">
+            <a class="d-flex" href="#">
+              <img src="img/jquery.gif" alt="jQuery course" class="list-thumbnail responsive border-0" />
+            </a>
+            <div class="pl-2 d-flex flex-grow-1 min-width-zero">
+              <div
+                class="card-body align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero align-items-lg-center">
+                <a href="#" class="w-40 w-sm-100">
+                  <p class="list-item-heading mb-1 truncate">jQuery basics</p>
+                </a>
+                <p class="mb-1 text-muted text-small w-15 w-sm-100">jQuery course</p>
+                <p class="mb-1 text-muted text-small w-15 w-sm-100">13.04.2018</p>
+                <div class="w-15 w-sm-100">
+                  <span class="badge badge-pill badge-primary">Coursing</span>
+                </div>
+              </div>
+
+              <div class="custom-control custom-checkbox pl-1 align-self-center pr-4">
+                <label class="custom-control custom-checkbox mb-0">
+                  <input type="checkbox" class="custom-control-input">
+                  <span class="custom-control-label"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="card d-flex flex-row mb-3">
+            <a class="d-flex" href="#">
+              <img src="img/html.png" alt="HTML5 course" class="list-thumbnail responsive border-0" />
+            </a>
+            <div class="pl-2 d-flex flex-grow-1 min-width-zero">
+              <div
+                class="card-body align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero align-items-lg-center">
+                <a href="#" class="w-40 w-sm-100">
+                  <p class="list-item-heading mb-1 truncate">HTML5 basics</p>
+                </a>
+                <p class="mb-1 text-muted text-small w-15 w-sm-100">HTML5 course</p>
+                <p class="mb-1 text-muted text-small w-15 w-sm-100">13.04.2018</p>
+                <div class="w-15 w-sm-100">
+                  <span class="badge badge-pill badge-primary">Coursing</span>
+                </div>
+              </div>
+
+              <div class="custom-control custom-checkbox pl-1 align-self-center pr-4">
+                <label class="custom-control custom-checkbox mb-0">
+                  <input type="checkbox" class="custom-control-input">
+                  <span class="custom-control-label"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="card d-flex flex-row mb-3">
+            <a class="d-flex" href="#">
+              <img src="img/python.png" alt="Python course" class="list-thumbnail responsive border-0" />
+            </a>
+            <div class="pl-2 d-flex flex-grow-1 min-width-zero">
+              <div
+                class="card-body align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero align-items-lg-center">
+                <a href="#" class="w-40 w-sm-100">
+                  <p class="list-item-heading mb-1 truncate">Python basics</p>
+                </a>
+                <p class="mb-1 text-muted text-small w-15 w-sm-100">Python course</p>
+                <p class="mb-1 text-muted text-small w-15 w-sm-100">13.04.2018</p>
+                <div class="w-15 w-sm-100">
+                  <span class="badge badge-pill badge-primary">Completed</span>
+                </div>
+              </div>
+
+              <div class="custom-control custom-checkbox pl-1 align-self-center pr-4">
+                <label class="custom-control custom-checkbox mb-0">
+                  <input type="checkbox" class="custom-control-input">
+                  <span class="custom-control-label"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="card d-flex flex-row mb-3">
+            <a class="d-flex" href="#">
+              <img src="img/javascript.png" alt="Javascript course" class="list-thumbnail responsive border-0" />
+            </a>
+            <div class="pl-2 d-flex flex-grow-1 min-width-zero">
+              <div
+                class="card-body align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero align-items-lg-center">
+                <a href="#" class="w-40 w-sm-100">
+                  <p class="list-item-heading mb-1 truncate">Javascript basics</p>
+                </a>
+                <p class="mb-1 text-muted text-small w-15 w-sm-100">Javascript course</p>
+                <p class="mb-1 text-muted text-small w-15 w-sm-100">13.04.2018</p>
+                <div class="w-15 w-sm-100">
+                  <span class="badge badge-pill badge-primary">Completed</span>
+                </div>
+              </div>
+
+              <div class="custom-control custom-checkbox pl-1 align-self-center pr-4">
+                <label class="custom-control custom-checkbox mb-0">
+                  <input type="checkbox" class="custom-control-input">
+                  <span class="custom-control-label"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="card d-flex flex-row mb-3">
+            <a class="d-flex" href="#">
+              <img src="img/jquery.gif" alt="jQuery course" class="list-thumbnail responsive border-0" />
+            </a>
+            <div class="pl-2 d-flex flex-grow-1 min-width-zero">
+              <div
+                class="card-body align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero align-items-lg-center">
+                <a href="#" class="w-40 w-sm-100">
+                  <p class="list-item-heading mb-1 truncate">jQuery basics</p>
+                </a>
+                <p class="mb-1 text-muted text-small w-15 w-sm-100">jQuery course</p>
+                <p class="mb-1 text-muted text-small w-15 w-sm-100">13.04.2018</p>
+                <div class="w-15 w-sm-100">
+                  <span class="badge badge-pill badge-primary">Coursing</span>
+                </div>
+              </div>
+
+              <div class="custom-control custom-checkbox pl-1 align-self-center pr-4">
+                <label class="custom-control custom-checkbox mb-0">
+                  <input type="checkbox" class="custom-control-input">
+                  <span class="custom-control-label"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="card d-flex flex-row mb-3">
+            <a class="d-flex" href="#">
+              <img src="img/html.png" alt="HTML5 course" class="list-thumbnail responsive border-0" />
+            </a>
+            <div class="pl-2 d-flex flex-grow-1 min-width-zero">
+              <div
+                class="card-body align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero align-items-lg-center">
+                <a href="#" class="w-40 w-sm-100">
+                  <p class="list-item-heading mb-1 truncate">HTML5 basics</p>
+                </a>
+                <p class="mb-1 text-muted text-small w-15 w-sm-100">HTML5 course</p>
+                <p class="mb-1 text-muted text-small w-15 w-sm-100">13.04.2018</p>
+                <div class="w-15 w-sm-100">
+                  <span class="badge badge-pill badge-primary">Coursing</span>
+                </div>
+              </div>
+
+              <div class="custom-control custom-checkbox pl-1 align-self-center pr-4">
+                <label class="custom-control custom-checkbox mb-0">
+                  <input type="checkbox" class="custom-control-input">
+                  <span class="custom-control-label"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <nav class="mt-4 mb-3">
+            <ul class="pagination justify-content-center mb-0">
+              <li class="page-item ">
+                <a class="page-link first" href="#">
+                  <i class="simple-icon-control-start"></i>
+                </a>
+              </li>
+              <li class="page-item ">
+                <a class="page-link prev" href="#">
+                  <i class="simple-icon-arrow-left"></i>
+                </a>
+              </li>
+              <li class="page-item active">
+                <a class="page-link" href="#">1</a>
+              </li>
+              <li class="page-item ">
+                <a class="page-link" href="#">2</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" href="#">3</a>
+              </li>
+              <li class="page-item ">
+                <a class="page-link next" href="#" aria-label="Next">
+                  <i class="simple-icon-arrow-right"></i>
+                </a>
+              </li>
+              <li class="page-item ">
+                <a class="page-link last" href="#">
+                  <i class="simple-icon-control-end"></i>
+                </a>
+              </li>
+            </ul>
+          </nav>
+
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/vendor/jquery-3.3.1.min.js"></script>
+  <script src="js/components/components.js"></script>
+  <script src="js/components/initComponents.js"></script>
+
+  <script src="js/vendor/bootstrap.bundle.min.js"></script>
+  <script src="js/vendor/perfect-scrollbar.min.js"></script>
+  <script src="js/vendor/mousetrap.min.js"></script>
+  <script src="js/vendor/jquery.contextMenu.min.js"></script>
+  <script src="js/dore.script.js"></script>
+  <script src="js/scripts.js"></script>
+  <script>
+    $('.main-menu-item').removeClass('active')
+    $('.material-menu-item').addClass('active')
+  </script>
+</body>
+
+</html>
