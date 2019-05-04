@@ -129,14 +129,14 @@ const mainMenu = `
             <i class="iconsmind-Digital-Drawing"></i> Material de apoyo
           </a>
       </li>
-      <li class="main-menu-item quizes-menu-item">
-        <a href="#">
-          <i class="iconsmind-Brain"></i> Quizes
+      <li class="main-menu-item quizzes-menu-item">
+        <a href="quizzes.html">
+          <i class="iconsmind-Brain"></i> Quizzes
         </a>
       </li>
       <li class="main-menu-item bolsa-menu-item">
           <a href="#bolsa-trabajo">
-              <i class="iconsmind-Pantone"></i> Bolsa de trabajo
+              <i class="iconsmind-Letter-Open"></i> Bolsa de trabajo
           </a>
       </li>
       <li class="main-menu-item academica-menu-item">
@@ -151,51 +151,51 @@ const mainMenu = `
 const subMenu = `
   <div class="scroll">
     <ul class="list-unstyled" data-link="material-apoyo">
-        <li>
+        <li class="sub-menu-item libros-sub-menu-item">
           <a href="libros.html">
             <i class="iconsmind-Open-Book"></i>Libros
           </a>
         </li>
-        <li>
+        <li class="sub-menu-item videos-sub-menu-item">
           <a href="videos_tutoriales.html">
             <i class="iconsmind-Video-5"></i>Videos y Tutoriales
           </a>
         </li>
-        <li>
+        <li class="sub-menu-item discusiones-sub-menu-item">
           <a href="discusiones.html">
             <i class="simple-icon-cup"></i>Discusiones en linea
           </a>
         </li>
     </ul>
     <ul class="list-unstyled" data-link="bolsa-trabajo">
-      <li>
-        <a href="1Ui.Alerts.html">
+      <li class="sub-menu-item trabajos-sub-menu-item">
+        <a href="trabajos.html">
           <i class="iconsmind-Suitcase"></i> Ver trabajos
         </a>
       </li>
-      <li>
-        <a href="Ui.Alerts.html">
+      <li class="sub-menu-item aplicaciones-sub-menu-item">
+        <a href="aplicaciones.html">
           <i class="simple-icon-check"></i> Mis aplicaciones
         </a>
       </li>
-      <li>
-        <a href="Ui.Alerts.html">
+      <li class="sub-menu-item empresas-sub-menu-item">
+        <a href="empresas.html">
           <i class="iconsmind-Building"></i> Empresas
         </a>
       </li>
     </ul>
     <ul class="list-unstyled" data-link="area-academica">
-      <li>
+      <li class="sub-menu-item tareas-sub-menu-item">
         <a target="_blank" href="#">
           <i class="iconsmind-Upload-Window"></i> Subir tarea
         </a>
       </li>
-      <li>
+      <li class="sub-menu-item notas-sub-menu-item">
         <a target="_blank" href="#">
           <i class="simple-icon-graduation"></i> Mis notas
         </a>
       </li>
-      <li>
+      <li class="sub-menu-item rendimiento-sub-menu-item">
         <a target="_blank" href="#">
           <i class="iconsmind-Bar-Chart"></i> Mi rendimiento 
         </a>

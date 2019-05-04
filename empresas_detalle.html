@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Dore jQuery</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="font/iconsmind/style.css" />
+  <link rel="stylesheet" href="font/simple-line-icons/css/simple-line-icons.css" />
+
+  <link rel="stylesheet" href="css/vendor/bootstrap.min.css" />
+  <link rel="stylesheet" href="css/vendor/perfect-scrollbar.css" />
+  <link rel="stylesheet" href="css/vendor/bootstrap-stars.css" />
+  <link rel="stylesheet" href="css/main.css" />
+</head>
+
+<body id="app-container" class="menu-default show-spinner">
+  <div class="navbar fixed-top" id="navbar"></div>
+  <div class="sidebar">
+    <div class="main-menu" id="mainmenu"></div>
+    <div class="sub-menu" id="submenu"></div>
+  </div>
+  <main>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12 list">
+
+          <div class="mb-2">
+            <h1>Company name</h1>
+            <div class="float-sm-right">
+              <button type="button"
+                class="btn btn-lg btn-outline-primary dropdown-toggle dropdown-toggle-split top-right-button top-right-button-single"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                ACTIONS
+              </button>
+              <div class="dropdown-menu dropdown-menu-right">
+                <a class="dropdown-item" href="#">Contact company</a>
+                <a class="dropdown-item" href="#">Report</a>
+              </div>
+            </div>
+            <nav class="breadcrumb-container d-none d-sm-block d-lg-inline-block" aria-label="breadcrumb">
+              <ol class="breadcrumb pt-0">
+                <li class="breadcrumb-item">
+                  <a href="#">Bolsa de trabajo</a>
+                </li>
+                <li class="breadcrumb-item">
+                  <a href="#">Empresas</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">Company name</li>
+              </ol>
+            </nav>
+          </div>
+
+          <div class="tab-pane show active" id="first" role="tabpanel" aria-labelledby="first-tab">
+            <div class="row">
+              <div class="col-lg-4 col-12 mb-4">
+                <div class="card mb-4">
+                  <div class="position-absolute card-top-buttons">
+                    <button class="btn btn-outline-white icon-button ">
+                      <i class="simple-icon-pencil"></i>
+                    </button>
+                  </div>
+                  <img src="img/tech_company_logo.jpg" alt="Detail Picture" class="card-img-top" />
+
+                  <div class="card-body">
+                    <p class="text-muted text-small mb-2">Company Description</p>
+                    <p class="mb-3">
+                      It’s all about simplicity…Less is more. Chocolate Cake exclusively
+                      brings you the classic chocolate cake. This cake is the
+                      one you always dream of-moist cake and creamy chocolate frosting.
+                      <br />
+                      <br /> This cake proudly serves itself for a family gathering, a dinner
+                      party,
+                      a birthday celebration, a baby christening, and a gift to someone
+                      special
+                      or simply to have on hand on the cake stand at home served with an ice
+                      cold
+                      glass of milk!</p>
+
+                    <p class="text-muted text-small mb-2">Available positions</p>
+                    <p class="mb-3">10</p>
+                    <p class="text-muted text-small mb-2">Users applications</p>
+                    <p class="mb-3">100</p>
+
+                    <p class="text-muted text-small mb-2">Tags</p>
+                    <p class="mb-3">
+                      <a href="#">
+                        <span class="badge badge-pill badge-outline-theme-2 mb-1">Programming</span>
+                      </a>
+                      <a href="#">
+                        <span class="badge badge-pill badge-outline-theme-2 mb-1">Frontend</span>
+                      </a>
+                      <a href="#">
+                        <span class="badge badge-pill badge-outline-theme-2 mb-1">Styles</span>
+                      </a>
+                      <a href="#">
+                        <span class="badge badge-pill badge-outline-theme-2 mb-1">Bug</span>
+                      </a>
+                      <a href="#">
+                        <span class="badge badge-pill badge-outline-theme-2 mb-1">Help</span>
+                      </a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-12 col-lg-8">
+                <div class="card mb-4">
+                  <div class="card-body">
+                    <h5 class="mb-4">Post a reply</h5>
+                    <form>
+                      <div class="form-group">
+                        <textarea class="form-control" id="exampleInputEmail1"
+                          placeholder="Write your reply here"></textarea>
+                        <small id="emailHelp" class="form-text text-muted">Everyone can see your reply once is
+                          posted.</small>
+                      </div>
+                      <button type="submit" class="btn btn-primary mb-0">Submit</button>
+                    </form>
+                  </div>
+                </div>
+                <div class="card mb-4">
+                  <div class="card-body">
+                    <h5 class="card-title">Comments</h5>
+                    <div>
+                      <div class="d-flex flex-row mb-3 pb-3 border-bottom">
+                        <a href="#">
+                          <img alt="Profile Picture" src="img/profile-pic-l.jpg"
+                            class="img-thumbnail border-0 rounded-circle list-thumbnail align-self-center xsmall" />
+                        </a>
+                        <div class="pl-3 pr-2">
+                          <a href="#">
+                            <p class="font-weight-medium mb-0">Very tasty, thank you.
+                            </p>
+                            <p class="text-muted mb-1 text-small">Mayra Sibley |
+                              17.09.2018 - 04:45</p>
+                          </a>
+                          <div class="form-group mb-0">
+                            <select class="rating" data-current-rating="5" data-readonly="true">
+                              <option value="1">1</option>
+                              <option value="2">2</option>
+                              <option value="3">3</option>
+                              <option value="4">4</option>
+                              <option value="5">5</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="d-flex flex-row mb-3 pb-3 border-bottom">
+                        <a href="#">
+                          <img alt="Profile Picture" src="img/profile-pic-l-7.jpg"
+                            class="img-thumbnail border-0 rounded-circle list-thumbnail align-self-center xsmall" />
+                        </a>
+                        <div class="pl-3 pr-2">
+                          <a href="#">
+                            <p class="font-weight-medium mb-0">This cake was delightful
+                              to eat. Please keep them coming.</p>
+                            <p class="text-muted mb-1 text-small">Barbera Castiglia |
+                              15.08.2018 - 01:18</p>
+                          </a>
+                          <div class="form-group mb-0">
+                            <select class="rating" data-current-rating="5" data-readonly="true">
+                              <option value="1">1</option>
+                              <option value="2">2</option>
+                              <option value="3">3</option>
+                              <option value="4">4</option>
+                              <option value="5">5</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="d-flex flex-row mb-3 pb-3 border-bottom">
+                        <a href="#">
+                          <img alt="Profile Picture" src="img/profile-pic-l-2.jpg"
+                            class="img-thumbnail border-0 rounded-circle list-thumbnail align-self-center xsmall" />
+                        </a>
+                        <div class="pl-3 pr-2">
+                          <a href="#">
+                            <p class="font-weight-medium mb-0">Your cake is bad and you
+                              should feel bad.</p>
+                            <p class="text-muted mb-1 text-small">Bao Hathaway |
+                              26.07.2018 - 11:14</p>
+                          </a>
+                          <div class="form-group mb-0">
+                            <select class="rating" data-current-rating="2" data-readonly="true">
+                              <option value="1">1</option>
+                              <option value="2">2</option>
+                              <option value="3">3</option>
+                              <option value="4">4</option>
+                              <option value="5">5</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="d-flex flex-row mb-3 pb-3 border-bottom">
+                        <a href="#">
+                          <img alt="Profile Picture" src="img/profile-pic-l-3.jpg"
+                            class="img-thumbnail border-0 rounded-circle list-thumbnail align-self-center xsmall" />
+                        </a>
+                        <div class="pl-3 pr-2">
+                          <a href="#">
+                            <p class="font-weight-medium mb-0">Very original recipe!</p>
+                            <p class="text-muted mb-1 text-small">Lenna Majeed |
+                              17.06.2018 - 09:20</p>
+                          </a>
+                          <div class="form-group mb-0">
+                            <select class="rating" data-current-rating="5" data-readonly="true">
+                              <option value="1">1</option>
+                              <option value="2">2</option>
+                              <option value="3">3</option>
+                              <option value="4">4</option>
+                              <option value="5">5</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="d-flex flex-row mb-3 pb-3 border-bottom">
+                        <a href="#">
+                          <img alt="Profile Picture" src="img/profile-pic-l-5.jpg"
+                            class="img-thumbnail border-0 rounded-circle list-thumbnail align-self-center xsmall" />
+                        </a>
+                        <div class="pl-3 pr-2">
+                          <a href="#">
+                            <p class="font-weight-medium mb-0">This cake was delightful
+                              to eat. Please keep them coming.</p>
+                            <p class="text-muted mb-1 text-small">Esperanza Lodge |
+                              16.06.2018 - 16:45</p>
+                          </a>
+                          <div class="form-group mb-0">
+                            <select class="rating" data-current-rating="5" data-readonly="true">
+                              <option value="1">1</option>
+                              <option value="2">2</option>
+                              <option value="3">3</option>
+                              <option value="4">4</option>
+                              <option value="5">5</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="d-flex flex-row">
+                        <a href="#">
+                          <img alt="Profile Picture" src="img/profile-pic-l-4.jpg"
+                            class="img-thumbnail border-0 rounded-circle list-thumbnail align-self-center xsmall" />
+                        </a>
+                        <div class="pl-3 pr-2">
+                          <a href="#">
+                            <p class="font-weight-medium mb-0">Nah, did not like it
+                              much.</p>
+                            <p class="text-muted mb-1 text-small">Brynn Bragg |
+                              12.04.2018 - 12:45</p>
+                          </a>
+                          <div class="form-group mb-0">
+                            <select class="rating" data-current-rating="3" data-readonly="true">
+                              <option value="1">1</option>
+                              <option value="2">2</option>
+                              <option value="3">3</option>
+                              <option value="4">4</option>
+                              <option value="5">5</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </main>
+
+
+  <script src="js/vendor/jquery-3.3.1.min.js"></script>
+  <script src="js/components/components.js"></script>
+  <script src="js/components/initComponents.js"></script>
+
+  <script src="js/vendor/bootstrap.bundle.min.js"></script>
+  <script src="js/vendor/perfect-scrollbar.min.js"></script>
+  <script src="js/vendor/progressbar.min.js"></script>
+  <script src="js/vendor/Chart.bundle.min.js"></script>
+  <script src="js/vendor/chartjs-plugin-datalabels.js"></script>
+  <script src="js/vendor/jquery.barrating.min.js"></script>
+  <script src="js/vendor/mousetrap.min.js"></script>
+  <script src="js/dore.script.js"></script>
+  <script src="js/scripts.js"></script>
+  <script>
+    $('.main-menu-item').removeClass('active')
+    $('.bolsa-menu-item').addClass('active')
+    $('.sub-menu-item').removeClass('active')
+    $('.trabajos-sub-menu-item').addClass('active')
+  </script>
+</body>
+
+</html>
