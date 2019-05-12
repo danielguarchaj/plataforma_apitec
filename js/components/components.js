@@ -106,8 +106,6 @@ const navbar = `
           </button>
 
           <div class="dropdown-menu dropdown-menu-right mt-3">
-              <a class="dropdown-item" href="#">Mi Perfil</a>
-              <a class="dropdown-item" href="#">Mi Portafolio</a>
               <a class="dropdown-item" href="#">Soporte</a>
               <a class="dropdown-item" href="#">Cerrar Sesión</a>
           </div>
@@ -124,24 +122,19 @@ const mainMenu = `
               <span>Dashboard</span>
           </a>
       </li>
-      <li class="main-menu-item material-menu-item">
-          <a href="#material-apoyo">
-            <i class="iconsmind-Digital-Drawing"></i> Material de apoyo
+      <li class="main-menu-item profile-menu-item">
+          <a href="perfil.html">
+            <i class="iconsmind-Profile"></i> Perfil
           </a>
       </li>
-      <li class="main-menu-item quizzes-menu-item">
-        <a href="quizzes.html">
-          <i class="iconsmind-Brain"></i> Quizzes
+      <li class="main-menu-item portfolio-menu-item">
+        <a href="portafolio.html">
+          <i class="iconsmind-Folder-Cloud"></i> Portafolio
         </a>
       </li>
       <li class="main-menu-item bolsa-menu-item">
-          <a href="#bolsa-trabajo">
-              <i class="iconsmind-Letter-Open"></i> Bolsa de trabajo
-          </a>
-      </li>
-      <li class="main-menu-item academica-menu-item">
-          <a href="#area-academica">
-              <i class="iconsmind-Pencil"></i> Área académica
+          <a href="#">
+              <i class="iconsmind-Letter-Open"></i> Asignaciones
           </a>
       </li>
     </ul>
