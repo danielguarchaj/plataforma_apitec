@@ -1,7 +1,7 @@
 {
   "name": "plataforma_apitec",
   "version": "1.0.0",
-  "description": "",
+  "description": "Apitec students platform",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/danielguarchaj/plataforma_apitec/issues"
   },
-  "homepage": "https://github.com/danielguarchaj/plataforma_apitec#readme"
+  "homepage": "https://github.com/danielguarchaj/plataforma_apitec#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
 }
