@@ -116,6 +116,11 @@ const navbar = `
 const mainMenu = `
   <div class="scroll">
     <ul class="list-unstyled">
+      <li class="main-menu-item dashboard-menu-item">
+        <a href="dashboard.html">
+          <i class="iconsmind-Home"></i> Dashboard
+        </a>
+      </li>
       <li class="main-menu-item profile-menu-item">
           <a href="perfil.html">
             <i class="iconsmind-Profile"></i> Perfil
