@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Asignaciones detalle</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="font/iconsmind/style.css" />
+  <link rel="stylesheet" href="font/simple-line-icons/css/simple-line-icons.css" />
+
+  <link rel="stylesheet" href="css/vendor/bootstrap.min.css" />
+  <link rel="stylesheet" href="css/vendor/fullcalendar.min.css" />
+  <link rel="stylesheet" href="css/vendor/dataTables.bootstrap4.min.css" />
+  <link rel="stylesheet" href="css/vendor/datatables.responsive.bootstrap4.min.css" />
+  <link rel="stylesheet" href="css/vendor/select2.min.css" />
+  <link rel="stylesheet" href="css/vendor/perfect-scrollbar.css" />
+  <link rel="stylesheet" href="css/vendor/owl.carousel.min.css" />
+  <link rel="stylesheet" href="css/vendor/bootstrap-stars.css" />
+  <link rel="stylesheet" href="css/vendor/nouislider.min.css" />
+  <link rel="stylesheet" href="css/vendor/bootstrap-datepicker3.min.css" />
+  <link rel="stylesheet" href="css/main.css" />
+
+</head>
+
+<body id="app-container" class="menu-default show-spinner">
+  <div class="navbar fixed-top" id="navbar"></div>
+  <div class="sidebar">
+    <div class="main-menu" id="mainmenu"></div>
+    <div class="sub-menu" id="submenu"></div>
+  </div>
+  <main>
+    <div class="row">
+      <div class="col-12">
+        <h1>Asignacion title</h1>
+        <div class="separator mb-5"></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-4 col-12 mb-4">
+        <div class="card mb-4">
+          <div class="position-absolute card-top-buttons">
+            <button class="btn btn-outline-white icon-button ">
+              <i class="simple-icon-pencil"></i>
+            </button>
+          </div>
+          <img src="img/detail.jpg" alt="Detail Picture" class="card-img-top">
+
+          <div class="card-body">
+            <p class="text-muted text-small mb-2">Asignación descripción</p>
+            <p class="mb-3">
+              It’s all about simplicity…Less is more. Chocolate Cake exclusively
+              brings you the classic chocolate cake. This cake is the
+              one you always dream of-moist cake and creamy chocolate frosting.
+              <br>
+              <br> This cake proudly serves itself for a family gathering, a dinner
+              party,
+              a birthday celebration, a baby christening, and a gift to someone
+              special
+              or simply to have on hand on the cake stand at home served with an ice
+              cold
+              glass of milk!
+            </p>
+
+            <p class="text-muted text-small mb-2">Valor</p>
+            <p class="mb-3">15</p>
+
+            <p class="text-muted text-small mb-2">Tags</p>
+            <p class="mb-3">
+              <a href="#">
+                <span class="badge badge-pill badge-outline-theme-2 mb-1">Flour</span>
+              </a>
+              <a href="#">
+                <span class="badge badge-pill badge-outline-theme-2 mb-1">Chocolate</span>
+              </a>
+              <a href="#">
+                <span class="badge badge-pill badge-outline-theme-2 mb-1">Caster
+                  Sugar</span>
+              </a>
+              <a href="#">
+                <span class="badge badge-pill badge-outline-theme-2 mb-1">Baking
+                  Powder</span>
+              </a>
+              <a href="#">
+                <span class="badge badge-pill badge-outline-theme-2 mb-1">Milk</span>
+              </a>
+              <a href="#">
+                <span class="badge badge-pill badge-outline-theme-2 mb-1">Eggs</span>
+              </a>
+              <a href="#">
+                <span class="badge badge-pill badge-outline-theme-2 mb-1">Vegetable
+                  Oil</span>
+              </a>
+            </p>
+            <p class="text-muted text-small mb-2">Expira en</p>
+            <p class="mb-3">2 dias 4 horas 3 minutos</p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="col-12 col-lg-8">
+        <div class="card mb-4">
+          <div class="card-body">
+            <h5 class="mb-4">Subir archivo</h5>
+            <form action="/file-upload">
+              <div class="dropzone dz-clickable">
+                <div class="dz-default dz-message"><span>Drop files here to upload</span></div>
+              </div>
+              <label class="mt-3 btn btn-outline-primary btn-upload" for="inputImage" title="Upload image file">
+                  <input type="file" class="sr-only" id="inputImage" name="file" accept=".jpg,.jpeg,.png,.gif,.bmp,.tiff">
+                  Select File
+              </label>
+              <div class="form-group mt-3">
+                  <label for="">Adjuntar link</label>
+                  <input type="email" class="form-control" id="" aria-describedby="" placeholder="Adjuntar link de proyecto">
+              </div>
+              <button type="button" class="btn btn-outline-info mb-1" onclick="location.href='asignaciones_detalle.html'">Enviar para calificación</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/vendor/jquery-3.3.1.min.js"></script>
+  <script src="js/components/components.js"></script>
+  <script src="js/components/initComponents.js"></script>
+
+  <script src="js/vendor/bootstrap.bundle.min.js"></script>
+  <script src="js/vendor/Chart.bundle.min.js"></script>
+  <script src="js/vendor/chartjs-plugin-datalabels.js"></script>
+  <script src="js/vendor/moment.min.js"></script>
+  <script src="js/vendor/fullcalendar.min.js"></script>
+  <script src="js/vendor/datatables.min.js"></script>
+  <script src="js/vendor/perfect-scrollbar.min.js"></script>
+  <script src="js/vendor/owl.carousel.min.js"></script>
+  <script src="js/vendor/progressbar.min.js"></script>
+  <script src="js/vendor/jquery.barrating.min.js"></script>
+  <script src="js/vendor/select2.full.js"></script>
+  <script src="js/vendor/nouislider.min.js"></script>
+  <script src="js/vendor/bootstrap-datepicker.js"></script>
+  <script src="js/vendor/Sortable.js"></script>
+  <script src="js/vendor/mousetrap.min.js"></script>
+  <script src="js/dore.script.js"></script>
+  <script src="js/vendor/dropzone.min.js"></script>
+  <script src="js/scripts.js"></script>
+
+  <script>
+    $('.main-menu-item').removeClass('active')
+    $('.asignations-menu-item').addClass('active')
+  </script>
+
+</body>
+
+</html>

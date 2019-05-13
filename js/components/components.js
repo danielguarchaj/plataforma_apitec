@@ -116,12 +116,6 @@ const navbar = `
 const mainMenu = `
   <div class="scroll">
     <ul class="list-unstyled">
-      <li class="main-menu-item dashboard-menu-item active">
-          <a href="index.html">
-              <i class="simple-icon-home"></i>
-              <span>Dashboard</span>
-          </a>
-      </li>
       <li class="main-menu-item profile-menu-item">
           <a href="perfil.html">
             <i class="iconsmind-Profile"></i> Perfil
@@ -132,8 +126,8 @@ const mainMenu = `
           <i class="iconsmind-Folder-Cloud"></i> Portafolio
         </a>
       </li>
-      <li class="main-menu-item bolsa-menu-item">
-          <a href="#">
+      <li class="main-menu-item asignations-menu-item">
+          <a href="asignaciones.html">
               <i class="iconsmind-Letter-Open"></i> Asignaciones
           </a>
       </li>

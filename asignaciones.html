@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Asignaciones</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="font/iconsmind/style.css" />
+  <link rel="stylesheet" href="font/simple-line-icons/css/simple-line-icons.css" />
+
+  <link rel="stylesheet" href="css/vendor/bootstrap.min.css" />
+  <link rel="stylesheet" href="css/vendor/fullcalendar.min.css" />
+  <link rel="stylesheet" href="css/vendor/dataTables.bootstrap4.min.css" />
+  <link rel="stylesheet" href="css/vendor/datatables.responsive.bootstrap4.min.css" />
+  <link rel="stylesheet" href="css/vendor/select2.min.css" />
+  <link rel="stylesheet" href="css/vendor/perfect-scrollbar.css" />
+  <link rel="stylesheet" href="css/vendor/owl.carousel.min.css" />
+  <link rel="stylesheet" href="css/vendor/bootstrap-stars.css" />
+  <link rel="stylesheet" href="css/vendor/nouislider.min.css" />
+  <link rel="stylesheet" href="css/vendor/bootstrap-datepicker3.min.css" />
+  <link rel="stylesheet" href="css/main.css" />
+
+</head>
+
+<body id="app-container" class="menu-default show-spinner">
+  <div class="navbar fixed-top" id="navbar"></div>
+  <div class="sidebar">
+    <div class="main-menu" id="mainmenu"></div>
+    <div class="sub-menu" id="submenu"></div>
+  </div>
+  <main>
+    <div class="row">
+      <div class="col-12">
+        <h1>Asignaciones</h1>
+        <div class="separator mb-5"></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-4 mb-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Resumen de mis notas</h5>
+            <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer">
+              <div class="row view-filter">
+                <div class="col-sm-12">
+                  <div class="pull-left"></div>
+                  <div class="pull-right"></div>
+                  <div class="clearfix"></div>
+                </div>
+              </div>
+              <table class="responsive nowrap dataTable no-footer dtr-inline"
+                data-order="[[ 1, &quot;desc&quot; ]]" id="DataTables_Table_0" role="grid" style="width: 433px;">
+                <thead>
+                  <tr role="row">
+                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
+                      style="width: 323px;" aria-label="Name: activate to sort column ascending">Name</th>
+                    <th class="sorting_desc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
+                      style="width: 48px;" aria-sort="descending" aria-label="Views: activate to sort column ascending">
+                      Value</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr role="row" class="odd">
+                    <td tabindex="0">
+                      <p class="list-item-heading">Puntos sumados</p>
+                    </td>
+                    <td class="sorting_1">
+                      <p class="text-muted">1003</p>
+                    </td>
+                  </tr>
+                  <tr role="row" class="even">
+                    <td tabindex="0">
+                      <p class="list-item-heading">Promedio</p>
+                    </td>
+                    <td class="sorting_1">
+                      <p class="text-muted">45.5</p>
+                    </td>
+                  </tr>
+                  <tr role="row" class="odd">
+                    <td tabindex="0">
+                      <p class="list-item-heading">Asignaciones entregadas</p>
+                    </td>
+                    <td class="sorting_1">
+                      <p class="text-muted">50</p>
+                    </td>
+                  </tr>
+                  <tr role="row" class="even">
+                    <td tabindex="0">
+                      <p class="list-item-heading">Asignaciones no entregadas</p>
+                    </td>
+                    <td class="sorting_1">
+                      <p class="text-muted">842</p>
+                    </td>
+                  </tr>
+                  <tr role="row" class="odd">
+                    <td tabindex="0">
+                      <p class="list-item-heading">Puntos perdidos</p>
+                    </td>
+                    <td class="sorting_1">
+                      <p class="text-muted">810</p>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-8 mb-4">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" id="pendientes-tab" data-toggle="tab" href="#pendientes" role="tab"
+              aria-controls="pendientes" aria-selected="true">Pendientes</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="calificadas-tab" data-toggle="tab" href="#calificadas" role="tab"
+              aria-controls="calificadas" aria-selected="false">Calificadas</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="expiradas-tab" data-toggle="tab" href="#expiradas" role="tab"
+              aria-controls="expiradas" aria-selected="false">Expiradas</a>
+          </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+          <div class="tab-pane fade show active" id="pendientes" role="tabpanel" aria-labelledby="pendientes-tab">
+            <div class="card h-100">
+              <div class="card-body">
+                <h5 class="card-title">Asignaciones pendientes</h5>
+                <table class="data-table responsive nowrap" data-order="[[ 1, &quot;desc&quot; ]]">
+                  <thead>
+                    <tr>
+                      <th>Titulo</th>
+                      <th>Fecha asignación</th>
+                      <th>Fecha entrega</th>
+                      <th>Valor</th>
+                      <th>Opciones</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <p class="list-item-heading">Assignation title</p>
+                      </td>
+                      <td>
+                        <p class="text-muted">00/00/0000 hh:mm</p>
+                      </td>
+                      <td>
+                        <p class="text-muted">00/00/0000 hh:mm</p>
+                      </td>
+                      <td>
+                        <p class="text-muted">15</p>
+                      </td>
+                      <td>
+                        <button type="button" class="btn btn-outline-info mb-1"
+                          onclick="location.href='asignaciones_detalle.html'">Ver</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p class="list-item-heading">Assignation title</p>
+                      </td>
+                      <td>
+                        <p class="text-muted">00/00/0000 hh:mm</p>
+                      </td>
+                      <td>
+                        <p class="text-muted">00/00/0000 hh:mm</p>
+                      </td>
+                      <td>
+                        <p class="text-muted">15</p>
+                      </td>
+                      <td>
+                        <button type="button" class="btn btn-outline-info mb-1"
+                          onclick="location.href='asignaciones_detalle.html'">Ver</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p class="list-item-heading">Assignation title</p>
+                      </td>
+                      <td>
+                        <p class="text-muted">00/00/0000 hh:mm</p>
+                      </td>
+                      <td>
+                        <p class="text-muted">00/00/0000 hh:mm</p>
+                      </td>
+                      <td>
+                        <p class="text-muted">15</p>
+                      </td>
+                      <td>
+                        <button type="button" class="btn btn-outline-info mb-1"
+                          onclick="location.href='asignaciones_detalle.html'">Ver</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p class="list-item-heading">Assignation title</p>
+                      </td>
+                      <td>
+                        <p class="text-muted">00/00/0000 hh:mm</p>
+                      </td>
+                      <td>
+                        <p class="text-muted">00/00/0000 hh:mm</p>
+                      </td>
+                      <td>
+                        <p class="text-muted">15</p>
+                      </td>
+                      <td>
+                        <button type="button" class="btn btn-outline-info mb-1"
+                          onclick="location.href='asignaciones_detalle.html'">Ver</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p class="list-item-heading">Assignation title</p>
+                      </td>
+                      <td>
+                        <p class="text-muted">00/00/0000 hh:mm</p>
+                      </td>
+                      <td>
+                        <p class="text-muted">00/00/0000 hh:mm</p>
+                      </td>
+                      <td>
+                        <p class="text-muted">15</p>
+                      </td>
+                      <td>
+                        <button type="button" class="btn btn-outline-info mb-1"
+                          onclick="location.href='asignaciones_detalle.html'">Ver</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p class="list-item-heading">Assignation title</p>
+                      </td>
+                      <td>
+                        <p class="text-muted">00/00/0000 hh:mm</p>
+                      </td>
+                      <td>
+                        <p class="text-muted">00/00/0000 hh:mm</p>
+                      </td>
+                      <td>
+                        <p class="text-muted">15</p>
+                      </td>
+                      <td>
+                        <button type="button" class="btn btn-outline-info mb-1"
+                          onclick="location.href='asignaciones_detalle.html'">Ver</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p class="list-item-heading">Assignation title</p>
+                      </td>
+                      <td>
+                        <p class="text-muted">00/00/0000 hh:mm</p>
+                      </td>
+                      <td>
+                        <p class="text-muted">00/00/0000 hh:mm</p>
+                      </td>
+                      <td>
+                        <p class="text-muted">15</p>
+                      </td>
+                      <td>
+                        <button type="button" class="btn btn-outline-info mb-1"
+                          onclick="location.href='asignaciones_detalle.html'">Ver</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p class="list-item-heading">Assignation title</p>
+                      </td>
+                      <td>
+                        <p class="text-muted">00/00/0000 hh:mm</p>
+                      </td>
+                      <td>
+                        <p class="text-muted">00/00/0000 hh:mm</p>
+                      </td>
+                      <td>
+                        <p class="text-muted">15</p>
+                      </td>
+                      <td>
+                        <button type="button" class="btn btn-outline-info mb-1"
+                          onclick="location.href='asignaciones_detalle.html'">Ver</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p class="list-item-heading">Assignation title</p>
+                      </td>
+                      <td>
+                        <p class="text-muted">00/00/0000 hh:mm</p>
+                      </td>
+                      <td>
+                        <p class="text-muted">00/00/0000 hh:mm</p>
+                      </td>
+                      <td>
+                        <p class="text-muted">15</p>
+                      </td>
+                      <td>
+                        <button type="button" class="btn btn-outline-info mb-1"
+                          onclick="location.href='asignaciones_detalle.html'">Ver</button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="calificadas" role="tabpanel" aria-labelledby="calificadas-tab">
+            <div class="card h-100">
+              <div class="card-body">
+                <h5 class="card-title">Asignaciones calificadas</h5>
+                <table class="data-table responsive nowrap" data-order="[[ 1, &quot;desc&quot; ]]">
+                  <thead>
+                    <tr>
+                      <th>Titulo</th>
+                      <th>Fecha asignación</th>
+                      <th>Fecha calificación</th>
+                      <th>Nota obtenida</th>
+                      <th>Opciones</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <p class="list-item-heading">Assignation title</p>
+                      </td>
+                      <td>
+                        <p class="text-muted">00/00/0000 hh:mm</p>
+                      </td>
+                      <td>
+                        <p class="text-muted">00/00/0000 hh:mm</p>
+                      </td>
+                      <td>
+                        <p class="text-muted">15</p>
+                      </td>
+                      <td>
+                        <button type="button" class="btn btn-outline-info mb-1"
+                          onclick="location.href='asignaciones_detalle.html'">Ver</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p class="list-item-heading">Assignation title</p>
+                      </td>
+                      <td>
+                        <p class="text-muted">00/00/0000 hh:mm</p>
+                      </td>
+                      <td>
+                        <p class="text-muted">00/00/0000 hh:mm</p>
+                      </td>
+                      <td>
+                        <p class="text-muted">15</p>
+                      </td>
+                      <td>
+                        <button type="button" class="btn btn-outline-info mb-1"
+                          onclick="location.href='asignaciones_detalle.html'">Ver</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p class="list-item-heading">Assignation title</p>
+                      </td>
+                      <td>
+                        <p class="text-muted">00/00/0000 hh:mm</p>
+                      </td>
+                      <td>
+                        <p class="text-muted">00/00/0000 hh:mm</p>
+                      </td>
+                      <td>
+                        <p class="text-muted">15</p>
+                      </td>
+                      <td>
+                        <button type="button" class="btn btn-outline-info mb-1"
+                          onclick="location.href='asignaciones_detalle.html'">Ver</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p class="list-item-heading">Assignation title</p>
+                      </td>
+                      <td>
+                        <p class="text-muted">00/00/0000 hh:mm</p>
+                      </td>
+                      <td>
+                        <p class="text-muted">00/00/0000 hh:mm</p>
+                      </td>
+                      <td>
+                        <p class="text-muted">15</p>
+                      </td>
+                      <td>
+                        <button type="button" class="btn btn-outline-info mb-1"
+                          onclick="location.href='asignaciones_detalle.html'">Ver</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p class="list-item-heading">Assignation title</p>
+                      </td>
+                      <td>
+                        <p class="text-muted">00/00/0000 hh:mm</p>
+                      </td>
+                      <td>
+                        <p class="text-muted">00/00/0000 hh:mm</p>
+                      </td>
+                      <td>
+                        <p class="text-muted">15</p>
+                      </td>
+                      <td>
+                        <button type="button" class="btn btn-outline-info mb-1"
+                          onclick="location.href='asignaciones_detalle.html'">Ver</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p class="list-item-heading">Assignation title</p>
+                      </td>
+                      <td>
+                        <p class="text-muted">00/00/0000 hh:mm</p>
+                      </td>
+                      <td>
+                        <p class="text-muted">00/00/0000 hh:mm</p>
+                      </td>
+                      <td>
+                        <p class="text-muted">15</p>
+                      </td>
+                      <td>
+                        <button type="button" class="btn btn-outline-info mb-1"
+                          onclick="location.href='asignaciones_detalle.html'">Ver</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p class="list-item-heading">Assignation title</p>
+                      </td>
+                      <td>
+                        <p class="text-muted">00/00/0000 hh:mm</p>
+                      </td>
+                      <td>
+                        <p class="text-muted">00/00/0000 hh:mm</p>
+                      </td>
+                      <td>
+                        <p class="text-muted">15</p>
+                      </td>
+                      <td>
+                        <button type="button" class="btn btn-outline-info mb-1"
+                          onclick="location.href='asignaciones_detalle.html'">Ver</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p class="list-item-heading">Assignation title</p>
+                      </td>
+                      <td>
+                        <p class="text-muted">00/00/0000 hh:mm</p>
+                      </td>
+                      <td>
+                        <p class="text-muted">00/00/0000 hh:mm</p>
+                      </td>
+                      <td>
+                        <p class="text-muted">15</p>
+                      </td>
+                      <td>
+                        <button type="button" class="btn btn-outline-info mb-1"
+                          onclick="location.href='asignaciones_detalle.html'">Ver</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p class="list-item-heading">Assignation title</p>
+                      </td>
+                      <td>
+                        <p class="text-muted">00/00/0000 hh:mm</p>
+                      </td>
+                      <td>
+                        <p class="text-muted">00/00/0000 hh:mm</p>
+                      </td>
+                      <td>
+                        <p class="text-muted">15</p>
+                      </td>
+                      <td>
+                        <button type="button" class="btn btn-outline-info mb-1"
+                          onclick="location.href='asignaciones_detalle.html'">Ver</button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="expiradas" role="tabpanel" aria-labelledby="expiradas-tab">
+            <div class="card h-100">
+              <div class="card-body">
+                <h5 class="card-title">Asignaciones expiradas</h5>
+                <table class="data-table responsive nowrap" data-order="[[ 1, &quot;desc&quot; ]]">
+                  <thead>
+                    <tr>
+                      <th>Titulo</th>
+                      <th>Fecha asignación</th>
+                      <th>Fecha entrega</th>
+                      <th>Punteo perdido</th>
+                      <th>Opciones</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <p class="list-item-heading">Assignation title</p>
+                      </td>
+                      <td>
+                        <p class="text-muted">00/00/0000 hh:mm</p>
+                      </td>
+                      <td>
+                        <p class="text-muted">00/00/0000 hh:mm</p>
+                      </td>
+                      <td>
+                        <p class="text-muted">15</p>
+                      </td>
+                      <td>
+                        <button type="button" class="btn btn-outline-info mb-1"
+                          onclick="location.href='asignaciones_detalle.html'">Ver</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p class="list-item-heading">Assignation title</p>
+                      </td>
+                      <td>
+                        <p class="text-muted">00/00/0000 hh:mm</p>
+                      </td>
+                      <td>
+                        <p class="text-muted">00/00/0000 hh:mm</p>
+                      </td>
+                      <td>
+                        <p class="text-muted">15</p>
+                      </td>
+                      <td>
+                        <button type="button" class="btn btn-outline-info mb-1"
+                          onclick="location.href='asignaciones_detalle.html'">Ver</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p class="list-item-heading">Assignation title</p>
+                      </td>
+                      <td>
+                        <p class="text-muted">00/00/0000 hh:mm</p>
+                      </td>
+                      <td>
+                        <p class="text-muted">00/00/0000 hh:mm</p>
+                      </td>
+                      <td>
+                        <p class="text-muted">15</p>
+                      </td>
+                      <td>
+                        <button type="button" class="btn btn-outline-info mb-1"
+                          onclick="location.href='asignaciones_detalle.html'">Ver</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p class="list-item-heading">Assignation title</p>
+                      </td>
+                      <td>
+                        <p class="text-muted">00/00/0000 hh:mm</p>
+                      </td>
+                      <td>
+                        <p class="text-muted">00/00/0000 hh:mm</p>
+                      </td>
+                      <td>
+                        <p class="text-muted">15</p>
+                      </td>
+                      <td>
+                        <button type="button" class="btn btn-outline-info mb-1"
+                          onclick="location.href='asignaciones_detalle.html'">Ver</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p class="list-item-heading">Assignation title</p>
+                      </td>
+                      <td>
+                        <p class="text-muted">00/00/0000 hh:mm</p>
+                      </td>
+                      <td>
+                        <p class="text-muted">00/00/0000 hh:mm</p>
+                      </td>
+                      <td>
+                        <p class="text-muted">15</p>
+                      </td>
+                      <td>
+                        <button type="button" class="btn btn-outline-info mb-1"
+                          onclick="location.href='asignaciones_detalle.html'">Ver</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p class="list-item-heading">Assignation title</p>
+                      </td>
+                      <td>
+                        <p class="text-muted">00/00/0000 hh:mm</p>
+                      </td>
+                      <td>
+                        <p class="text-muted">00/00/0000 hh:mm</p>
+                      </td>
+                      <td>
+                        <p class="text-muted">15</p>
+                      </td>
+                      <td>
+                        <button type="button" class="btn btn-outline-info mb-1"
+                          onclick="location.href='asignaciones_detalle.html'">Ver</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p class="list-item-heading">Assignation title</p>
+                      </td>
+                      <td>
+                        <p class="text-muted">00/00/0000 hh:mm</p>
+                      </td>
+                      <td>
+                        <p class="text-muted">00/00/0000 hh:mm</p>
+                      </td>
+                      <td>
+                        <p class="text-muted">15</p>
+                      </td>
+                      <td>
+                        <button type="button" class="btn btn-outline-info mb-1"
+                          onclick="location.href='asignaciones_detalle.html'">Ver</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p class="list-item-heading">Assignation title</p>
+                      </td>
+                      <td>
+                        <p class="text-muted">00/00/0000 hh:mm</p>
+                      </td>
+                      <td>
+                        <p class="text-muted">00/00/0000 hh:mm</p>
+                      </td>
+                      <td>
+                        <p class="text-muted">15</p>
+                      </td>
+                      <td>
+                        <button type="button" class="btn btn-outline-info mb-1"
+                          onclick="location.href='asignaciones_detalle.html'">Ver</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p class="list-item-heading">Assignation title</p>
+                      </td>
+                      <td>
+                        <p class="text-muted">00/00/0000 hh:mm</p>
+                      </td>
+                      <td>
+                        <p class="text-muted">00/00/0000 hh:mm</p>
+                      </td>
+                      <td>
+                        <p class="text-muted">15</p>
+                      </td>
+                      <td>
+                        <button type="button" class="btn btn-outline-info mb-1"
+                          onclick="location.href='asignaciones_detalle.html'">Ver</button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/vendor/jquery-3.3.1.min.js"></script>
+  <script src="js/components/components.js"></script>
+  <script src="js/components/initComponents.js"></script>
+
+  <script src="js/vendor/bootstrap.bundle.min.js"></script>
+  <script src="js/vendor/Chart.bundle.min.js"></script>
+  <script src="js/vendor/chartjs-plugin-datalabels.js"></script>
+  <script src="js/vendor/moment.min.js"></script>
+  <script src="js/vendor/fullcalendar.min.js"></script>
+  <script src="js/vendor/datatables.min.js"></script>
+  <script src="js/vendor/perfect-scrollbar.min.js"></script>
+  <script src="js/vendor/owl.carousel.min.js"></script>
+  <script src="js/vendor/progressbar.min.js"></script>
+  <script src="js/vendor/jquery.barrating.min.js"></script>
+  <script src="js/vendor/select2.full.js"></script>
+  <script src="js/vendor/nouislider.min.js"></script>
+  <script src="js/vendor/bootstrap-datepicker.js"></script>
+  <script src="js/vendor/Sortable.js"></script>
+  <script src="js/vendor/mousetrap.min.js"></script>
+  <script src="js/dore.script.js"></script>
+  <script src="js/vendor/dropzone.min.js"></script>
+  <script src="js/scripts.js"></script>
+
+  <script>
+    $('.main-menu-item').removeClass('active')
+    $('.asignations-menu-item').addClass('active')
+  </script>
+
+</body>
+
+</html>
