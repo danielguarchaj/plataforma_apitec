@@ -14,7 +14,17 @@ const populateAssignments = async assignments => {
   let delivered = ''
   let reviewed = ''
   let expired = ''
+
   let currentDate = moment(new Date())
+
+  let pointsEarned = 0
+  let pointsLost = 0
+  let averageScore = 0
+  let assignmentsDelivered = 0
+  let assignmentsExpired = 0
+  let assignmentsReviewed = 0
+  
+  const proportions = []
 
   for (const assignment of assignments) {
     //Condition for pending to deliver assignments and expired assignments:
@@ -39,11 +49,13 @@ const populateAssignments = async assignments => {
           </td>
           <td>
             <button type="button" class="btn btn-outline-info mb-1"
-              onclick="location.href='asignaciones_detalle.html'">Ver</button>
+              onclick="location.href='asignaciones_detalle.html?assignment=${assignment.id}'">Ver</button>
           </td>
         </tr>
         `
       } else { // Assignment is expired
+        pointsLost += assignment.activity.value
+        assignmentsExpired++
         expired += `
           <tr>
             <td>
@@ -69,6 +81,11 @@ const populateAssignments = async assignments => {
     //Condition for delivered assignments
     if (assignment.url_assignment || assignment.file_assignment) {
       if (assignment.score) { // If score is set and defined is a reviewed assignment
+        pointsEarned += assignment.score
+        assignmentsReviewed++
+
+        proportions.push(assignment.score / assignment.activity.value)
+
         reviewed += `
         <tr>
           <td>
@@ -90,6 +107,7 @@ const populateAssignments = async assignments => {
         </tr>
         `
       } else { // score is not set and defined, it hasn't been reviewed yet but delivered
+        assignmentsDelivered++
         delivered += `
         <tr>
           <td>
@@ -118,6 +136,16 @@ const populateAssignments = async assignments => {
   $('#expiradas-tbody').html(expired)
   $('#entregadas-tbody').html(delivered)
   $('#calificadas-tbody').html(reviewed)
+
+  $('#card-entregadas').html(assignmentsDelivered)
+  $('#card-expiradas').html(assignmentsExpired)
+  $('#card-calificadas').html(assignmentsReviewed)
+  $('#card-puntos-sumados').html(pointsEarned)
+  $('#card-puntos-perdidos').html(pointsLost)
+  $('#card-promedio').html(
+    ((proportions.reduce((a, b) => a + b, 0) / proportions.length) * 100).toFixed(2) + '%'
+  )
+
 }
 
 (() => {
