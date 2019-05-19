@@ -30,7 +30,7 @@ const setAssignment = assignment => {
     </select>
   `)
 
-  if (assignment.activity.support_materials.length > 0){
+  if (assignment.activity.support_materials.length > 0) {
     let materialsHtml = ''
     for (const material of assignment.activity.support_materials) {
       materialsHtml += `
@@ -48,21 +48,23 @@ const setAssignment = assignment => {
       `
     }
     $('#activity-material').html(materialsHtml)
-  }else{
-    $('#activity-material').html('<h1>No hay material de apoyo para esta actividad</h1>')
+  } else {
+    $('#activity-no-material').html('<h1>No hay material de apoyo para esta actividad</h1>')
   }
 
   const difference = getDecomposedDatetimeDifference(assignment.deadline)
   $('#assignment-time').html(`${difference.days} días ${difference.hours} horas y ${difference.minutes} minutos`)
   assignmentStatus = GetAssignmentStatus(assignment)
-  switch ( assignmentStatus ) {
+  switch (assignmentStatus) {
     case 'pending':
-      $('#assignment-status').html('Expira en')    
+      $('#assignment-status').html('Expira en')
+      $('#assignment-upload-container').removeClass('hidden')
+      $('#assignment-status-pending').removeClass('hidden')
       break;
     case 'expired':
       $('#assignment-status').html('Expiró hace')
       $('#assignment-time').addClass('text-danger')
-      $('#assignemnt-upload-container').remove()
+      $('#assignment-status-expired').removeClass('hidden')
       break
     case 'reviewed':
       var differenceDelivered = getDecomposedDatetimeDifference(assignment.delivered)
@@ -71,18 +73,43 @@ const setAssignment = assignment => {
       $('#assignment-time').addClass('text-success')
       $('#assignment-score-title').html('Puntaje obtenido')
       $('#activity-value').html(`${assignment.score} / ${assignment.activity.value}`)
-      $('#btn-deliver').remove()
+      $('#assignment-delivered-container').removeClass('hidden')
+      $('#assignment-status-reviewed').removeClass('hidden')
       break
     case 'delivered':
       var differenceDelivered = getDecomposedDatetimeDifference(assignment.delivered)
       $('#assignment-time').html(`${differenceDelivered.days} días ${differenceDelivered.hours} horas y ${differenceDelivered.minutes} minutos`)
       $('#assignment-status').html('Entregado hace')
       $('#assignment-time').addClass('text-success')
-      $('#btn-deliver').remove()
+      $('#assignment-delivered-container').removeClass('hidden')
+      $('#assignment-status-delivered').removeClass('hidden')
       break
     default:
       break;
   }
+
+  if (assignmentStatus == 'reviewed' || assignmentStatus == 'delivered') {
+    if (assignment.file_assignment)
+      $('#assignment-delivered-content').append(`
+        <h5 class="mb-4">Archivo subido</h5>
+        <div class="input-group mb-3">
+          <a href="${assignment.file_assignment}">${assignment.file_assignment}</a>
+        </div>
+      `)
+    else
+      $('#assignment-delivered-content').append(`<p class="mb-4">No se subió ningún archivo</p>`)
+
+    if (assignment.url_assignment)
+      $('#assignment-delivered-content').append(`
+      <h5 class="mb-4">Url adjunto</h5>
+      <div class="form-group mt-3">
+        <a href="${assignment.url_assignment}">${assignment.url_assignment}</a>
+      </div>
+    `)
+    else
+      $('#assignment-delivered-content').append('<p>No se adjuntó ningúna url</p>')
+  }
+
 }
 
 (() => {

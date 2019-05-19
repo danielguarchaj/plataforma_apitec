@@ -21,6 +21,12 @@
   <link rel="stylesheet" href="css/vendor/bootstrap-datepicker3.min.css" />
   <link rel="stylesheet" href="css/main.css" />
 
+  <style>
+    .hidden {
+      display: none !important;
+    }
+  </style>
+
 </head>
 
 <body id="app-container" class="menu-default show-spinner">
@@ -65,43 +71,51 @@
       </div>
 
       <div class="col-12 col-lg-8">
-        <div class="card mb-4" id="assignemnt-upload-container">
+        <div class="card mb-4" id="assignemnt-info-container">
+          <div class="card-body">
+            <h5 class="text-warning hidden" id="assignment-status-pending">La asignación aún no ha sido entregada</h5>
+            <h5 class="text-danger hidden" id="assignment-status-expired">La asignación ha expirado</h5>
+            <h5 class="text-info hidden" id="assignment-status-delivered">La asignación ha sido entregada y esta
+              pendiente de ser calificada</h5>
+            <h5 class="text-success hidden" id="assignment-status-reviewed">La asignación ha sido calificada</h5>
+          </div>
+        </div>
+        <div class="card mb-4 hidden" id="assignment-upload-container">
           <div class="card-body">
             <h5 class="mb-4">Subir archivo</h5>
-            <form action="/file-upload">
-              <div class="dropzone dz-clickable">
-                <div class="dz-default dz-message"><span>Drop files here to upload</span></div>
-              </div>
-              <label class="mt-3 btn btn-outline-primary btn-upload" for="assignment-file" title="Upload image file">
-                <input type="file" class="sr-only" id="assignment-file" name="file">
-                Seleccionar archivo
-              </label>
-              <div class="form-group mt-3">
-                <label for="">Adjuntar link</label>
-                <input type="text" class="form-control" id="assignment-url" placeholder="Adjuntar link de proyecto">
-              </div>
-              <button type="button" class="btn btn-outline-info mb-1" onclick="UploadAssignment()" id="btn-deliver">Entregar asignación</button>
-            </form>
+            <div class="input-group mb-3">
+              <input type="file" class="form-control" id="assignment-file">
+            </div>
+            <div class="form-group mt-3">
+              <label for="">Adjuntar link</label>
+              <input type="text" class="form-control" id="assignment-url" placeholder="Adjuntar link de proyecto">
+            </div>
+            <button type="button" class="btn btn-outline-info mb-1" onclick="UploadAssignment()"
+              id="btn-deliver">Entregar asignación</button>
           </div>
         </div>
-        <div class="row">
-          <div class="col-12">
-            <h5>Material de apoyo</h5>
-            <div class="separator mb-5"></div>
+        <div class="card mb-4 hidden" id="assignment-delivered-container">
+          <div class="card-body" id="assignment-delivered-content">
           </div>
         </div>
-        <div class="icon-cards-row">
-          <div class="owl-container">
-            <div class="owl-carousel dashboard-numbers" id="activity-material"></div>
-          </div>
-        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <h5>Material de apoyo</h5>
+        <div class="separator mb-5"></div>
+      </div>
+    </div>
+    <div class="icon-cards-row" id="activity-no-material">
+      <div class="owl-container">
+        <div class="owl-carousel dashboard-numbers" id="activity-material"></div>
       </div>
     </div>
   </main>
 
   <script src="js/vendor/jquery-3.3.1.min.js"></script>
   <script src="js/plugins/moment.js"></script>
-  
+
   <script src="js/components/components.js"></script>
   <script src="js/components/initComponents.js"></script>
 
