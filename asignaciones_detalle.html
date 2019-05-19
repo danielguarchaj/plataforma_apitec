@@ -32,7 +32,7 @@
   <main>
     <div class="row">
       <div class="col-12">
-        <h1>Asignacion title</h1>
+        <h1 id="activity-title"></h1>
         <div class="separator mb-5"></div>
       </div>
     </div>
@@ -41,89 +41,46 @@
         <div class="card mb-4">
 
           <div class="card-body">
-            <p class="text-muted text-small mb-2">Asignación descripción</p>
-            <p class="mb-3">
-              It’s all about simplicity…Less is more. Chocolate Cake exclusively
-              brings you the classic chocolate cake. This cake is the
-              one you always dream of-moist cake and creamy chocolate frosting.
-              <br>
-              <br> This cake proudly serves itself for a family gathering, a dinner
-              party,
-              a birthday celebration, a baby christening, and a gift to someone
-              special
-              or simply to have on hand on the cake stand at home served with an ice
-              cold
-              glass of milk!
-            </p>
+            <p class="text-muted text-small mb-2">Instrucciones</p>
+            <p class="mb-3" id="activity-instructions"></p>
 
-            <p class="text-muted text-small mb-2">Valor</p>
-            <p class="mb-3">15</p>
+            <p class="text-muted text-small mb-2">Módulo</p>
+            <p class="mb-3" id="activity-module"></p>
+
+            <p class="text-muted text-small mb-2">Lenguaje</p>
+            <p class="mb-3" id="activity-language"></p>
+
+            <p class="text-muted text-small mb-2" id="assignment-score-title">Puntos posibles</p>
+            <p class="mb-3" id="activity-value"></p>
 
             <p class="text-muted text-small mb-2">Nivel de dificultad</p>
-            <div class="form-group mb-3">
-              <select class="rating" data-current-rating="5" data-readonly="true">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-              </select>
+            <div class="form-group mb-3" id="activity-difficulty-level">
             </div>
 
-
-            <p class="text-muted text-small mb-2">Tags</p>
-            <p class="mb-3">
-              <a href="#">
-                <span class="badge badge-pill badge-outline-theme-2 mb-1">Flour</span>
-              </a>
-              <a href="#">
-                <span class="badge badge-pill badge-outline-theme-2 mb-1">Chocolate</span>
-              </a>
-              <a href="#">
-                <span class="badge badge-pill badge-outline-theme-2 mb-1">Caster
-                  Sugar</span>
-              </a>
-              <a href="#">
-                <span class="badge badge-pill badge-outline-theme-2 mb-1">Baking
-                  Powder</span>
-              </a>
-              <a href="#">
-                <span class="badge badge-pill badge-outline-theme-2 mb-1">Milk</span>
-              </a>
-              <a href="#">
-                <span class="badge badge-pill badge-outline-theme-2 mb-1">Eggs</span>
-              </a>
-              <a href="#">
-                <span class="badge badge-pill badge-outline-theme-2 mb-1">Vegetable
-                  Oil</span>
-              </a>
-            </p>
-            <p class="text-muted text-small mb-2">Expira en</p>
-            <p class="mb-3">2 dias 4 horas 3 minutos</p>
+            <p class="text-muted text-small mb-2" id="assignment-status"></p>
+            <p class="mb-3" id="assignment-time"></p>
           </div>
         </div>
 
       </div>
 
       <div class="col-12 col-lg-8">
-        <div class="card mb-4">
+        <div class="card mb-4" id="assignemnt-upload-container">
           <div class="card-body">
             <h5 class="mb-4">Subir archivo</h5>
             <form action="/file-upload">
               <div class="dropzone dz-clickable">
                 <div class="dz-default dz-message"><span>Drop files here to upload</span></div>
               </div>
-              <label class="mt-3 btn btn-outline-primary btn-upload" for="inputImage" title="Upload image file">
-                <input type="file" class="sr-only" id="inputImage" name="file" accept=".jpg,.jpeg,.png,.gif,.bmp,.tiff">
-                Select File
+              <label class="mt-3 btn btn-outline-primary btn-upload" for="assignment-file" title="Upload image file">
+                <input type="file" class="sr-only" id="assignment-file" name="file">
+                Seleccionar archivo
               </label>
               <div class="form-group mt-3">
                 <label for="">Adjuntar link</label>
-                <input type="email" class="form-control" id="" aria-describedby=""
-                  placeholder="Adjuntar link de proyecto">
+                <input type="text" class="form-control" id="assignment-url" placeholder="Adjuntar link de proyecto">
               </div>
-              <button type="button" class="btn btn-outline-info mb-1"
-                onclick="location.href='asignaciones_detalle.html'">Enviar para calificación</button>
+              <button type="button" class="btn btn-outline-info mb-1" onclick="UploadAssignment()" id="btn-deliver">Entregar asignación</button>
             </form>
           </div>
         </div>
@@ -135,50 +92,7 @@
         </div>
         <div class="icon-cards-row">
           <div class="owl-container">
-            <div class="owl-carousel dashboard-numbers">
-              <a href="#" class="card">
-                <div class="card-body text-center">
-                  <i class="iconsmind-Idea-4"></i>
-                  <p class="card-text mb-0">Material de apoyo</p>
-                  <p class="lead text-center">Tipo</p>
-                </div>
-              </a>
-              <a href="#" class="card">
-                <div class="card-body text-center">
-                  <i class="iconsmind-Idea-4"></i>
-                  <p class="card-text mb-0">Material de apoyo</p>
-                  <p class="lead text-center">Tipo</p>
-                </div>
-              </a>
-              <a href="#" class="card">
-                <div class="card-body text-center">
-                  <i class="iconsmind-Idea-4"></i>
-                  <p class="card-text mb-0">Material de apoyo</p>
-                  <p class="lead text-center">Tipo</p>
-                </div>
-              </a>
-              <a href="#" class="card">
-                <div class="card-body text-center">
-                  <i class="iconsmind-Idea-4"></i>
-                  <p class="card-text mb-0">Material de apoyo</p>
-                  <p class="lead text-center">Tipo</p>
-                </div>
-              </a>
-              <a href="#" class="card">
-                <div class="card-body text-center">
-                  <i class="iconsmind-Idea-4"></i>
-                  <p class="card-text mb-0">Material de apoyo</p>
-                  <p class="lead text-center">Tipo</p>
-                </div>
-              </a>
-              <a href="#" class="card">
-                <div class="card-body text-center">
-                  <i class="iconsmind-Idea-4"></i>
-                  <p class="card-text mb-0">Material de apoyo</p>
-                  <p class="lead text-center">Tipo</p>
-                </div>
-              </a>
-            </div>
+            <div class="owl-carousel dashboard-numbers" id="activity-material"></div>
           </div>
         </div>
       </div>
@@ -186,8 +100,17 @@
   </main>
 
   <script src="js/vendor/jquery-3.3.1.min.js"></script>
+  <script src="js/plugins/moment.js"></script>
+  
   <script src="js/components/components.js"></script>
   <script src="js/components/initComponents.js"></script>
+
+  <script src="js/vendor/jquery.barrating.min.js"></script>
+
+  <script src="js/axios/axios.min.js"></script>
+  <script src="js/axios/http.js"></script>
+  <script src="js/scripts/helpers.js"></script>
+  <script src="js/scripts/asignaciones_detalle.js"></script>
 
   <script src="js/vendor/bootstrap.bundle.min.js"></script>
   <script src="js/vendor/Chart.bundle.min.js"></script>
@@ -198,7 +121,6 @@
   <script src="js/vendor/perfect-scrollbar.min.js"></script>
   <script src="js/vendor/owl.carousel.min.js"></script>
   <script src="js/vendor/progressbar.min.js"></script>
-  <script src="js/vendor/jquery.barrating.min.js"></script>
   <script src="js/vendor/select2.full.js"></script>
   <script src="js/vendor/nouislider.min.js"></script>
   <script src="js/vendor/bootstrap-datepicker.js"></script>
@@ -207,11 +129,6 @@
   <script src="js/dore.script.js"></script>
   <script src="js/vendor/dropzone.min.js"></script>
   <script src="js/scripts.js"></script>
-
-  <script>
-    $('.main-menu-item').removeClass('active')
-    $('.asignations-menu-item').addClass('active')
-  </script>
 
 </body>
 

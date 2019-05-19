@@ -15,48 +15,18 @@ const populateAssignments = async assignments => {
   let reviewed = ''
   let expired = ''
 
-  let currentDate = moment(new Date())
-
   let pointsEarned = 0
   let pointsLost = 0
-  let averageScore = 0
   let assignmentsDelivered = 0
   let assignmentsExpired = 0
   let assignmentsReviewed = 0
-  
+
   const proportions = []
 
   for (const assignment of assignments) {
-    //Condition for pending to deliver assignments and expired assignments:
-    let deadline = moment(assignment.deadline, "Y-MM-DD hh:mm:ss")
-    const diff = (deadline - currentDate) / (1000 * 60 * 60 * 24)
-    if (!assignment.url_assignment && !assignment.file_assignment) {
-      // If diff greater than zero, assignment is still pending to deliver
-      if (diff > 0) {
+    switch (GetAssignmentStatus(assignment)) {
+      case 'pending':
         pending += `
-        <tr>
-          <td>
-            <p class="list-item-heading">${assignment.activity.title}</p>
-          </td>
-          <td>
-            <p class="text-muted">${moment(assignment.created).format('DD/MM/Y hh:mm:ss')}</p>
-          </td>
-          <td>
-            <p class="text-muted">${moment(assignment.deadline).format('DD/MM//Y hh:mm:ss')}</p>
-          </td>
-          <td>
-            <p class="text-muted">${assignment.activity.value}</p>
-          </td>
-          <td>
-            <button type="button" class="btn btn-outline-info mb-1"
-              onclick="location.href='asignaciones_detalle.html?assignment=${assignment.id}'">Ver</button>
-          </td>
-        </tr>
-        `
-      } else { // Assignment is expired
-        pointsLost += assignment.activity.value
-        assignmentsExpired++
-        expired += `
           <tr>
             <td>
               <p class="list-item-heading">${assignment.activity.title}</p>
@@ -65,7 +35,7 @@ const populateAssignments = async assignments => {
               <p class="text-muted">${moment(assignment.created).format('DD/MM/Y hh:mm:ss')}</p>
             </td>
             <td>
-              <p class="text-muted">${moment(assignment.deadline).format('DD/MM/Y hh:mm:ss')}</p>
+              <p class="text-muted">${moment(assignment.deadline).format('DD/MM//Y hh:mm:ss')}</p>
             </td>
             <td>
               <p class="text-muted">${assignment.activity.value}</p>
@@ -76,59 +46,80 @@ const populateAssignments = async assignments => {
             </td>
           </tr>
         `
-      }
-    }
-    //Condition for delivered assignments
-    if (assignment.url_assignment || assignment.file_assignment) {
-      if (assignment.score) { // If score is set and defined is a reviewed assignment
+        break
+      case 'expired':
+        pointsLost += assignment.activity.value
+        assignmentsExpired++
+        expired += `
+            <tr>
+              <td>
+                <p class="list-item-heading">${assignment.activity.title}</p>
+              </td>
+              <td>
+                <p class="text-muted">${moment(assignment.created).format('DD/MM/Y hh:mm:ss')}</p>
+              </td>
+              <td>
+                <p class="text-muted">${moment(assignment.deadline).format('DD/MM/Y hh:mm:ss')}</p>
+              </td>
+              <td>
+                <p class="text-muted">${assignment.activity.value}</p>
+              </td>
+              <td>
+                <button type="button" class="btn btn-outline-info mb-1"
+                  onclick="location.href='asignaciones_detalle.html?assignment=${assignment.id}'">Ver</button>
+              </td>
+            </tr>
+          `
+        break
+      case 'reviewed':
         pointsEarned += assignment.score
         assignmentsReviewed++
-
         proportions.push(assignment.score / assignment.activity.value)
-
         reviewed += `
-        <tr>
-          <td>
-            <p class="list-item-heading">${assignment.activity.title}</p>
-          </td>
-          <td>
-            <p class="text-muted">${moment(assignment.deadline).format('DD/MM//Y hh:mm:ss')}</p>
-          </td>
-          <td>
-            <p class="text-muted">${moment(assignment.delivered).format('DD/MM/Y hh:mm:ss')}</p>
-          </td>
-          <td>
-            <p class="text-muted"> ${assignment.score} / ${assignment.activity.value}</p>
-          </td>
-          <td>
-            <button type="button" class="btn btn-outline-info mb-1"
-              onclick="location.href='asignaciones_detalle.html?assignment=${assignment.id}'">Ver</button>
-          </td>
-        </tr>
-        `
-      } else { // score is not set and defined, it hasn't been reviewed yet but delivered
+            <tr>
+              <td>
+                <p class="list-item-heading">${assignment.activity.title}</p>
+              </td>
+              <td>
+                <p class="text-muted">${moment(assignment.deadline).format('DD/MM//Y hh:mm:ss')}</p>
+              </td>
+              <td>
+                <p class="text-muted">${moment(assignment.delivered).format('DD/MM/Y hh:mm:ss')}</p>
+              </td>
+              <td>
+                <p class="text-muted"> ${assignment.score} / ${assignment.activity.value}</p>
+              </td>
+              <td>
+                <button type="button" class="btn btn-outline-info mb-1"
+                  onclick="location.href='asignaciones_detalle.html?assignment=${assignment.id}'">Ver</button>
+              </td>
+            </tr>
+          `
+        break
+      case 'delivered':
         assignmentsDelivered++
         delivered += `
-        <tr>
-          <td>
-            <p class="list-item-heading">${assignment.activity.title}</p>
-          </td>
-          <td>
-            <p class="text-muted">${moment(assignment.deadline).format('DD/MM//Y hh:mm:ss')}</p>
-          </td>
-          <td>
-            <p class="text-muted">${moment(assignment.delivered).format('DD/MM/Y hh:mm:ss')}</p>
-          </td>
-          <td>
-            <p class="text-muted">${assignment.activity.value}</p>
-          </td>
-          <td>
-            <button type="button" class="btn btn-outline-info mb-1"
-              onclick="location.href='asignaciones_detalle.html?assignment=${assignment.id}'">Ver</button>
-          </td>
-        </tr>
+          <tr>
+            <td>
+              <p class="list-item-heading">${assignment.activity.title}</p>
+            </td>
+            <td>
+              <p class="text-muted">${moment(assignment.deadline).format('DD/MM//Y hh:mm:ss')}</p>
+            </td>
+            <td>
+              <p class="text-muted">${moment(assignment.delivered).format('DD/MM/Y hh:mm:ss')}</p>
+            </td>
+            <td>
+              <p class="text-muted">${assignment.activity.value}</p>
+            </td>
+            <td>
+              <button type="button" class="btn btn-outline-info mb-1"
+                onclick="location.href='asignaciones_detalle.html?assignment=${assignment.id}'">Ver</button>
+            </td>
+          </tr>
         `
-      }
+      default:
+        break;
     }
   }
 
@@ -149,6 +140,7 @@ const populateAssignments = async assignments => {
 }
 
 (() => {
+  SetActiveTabMenu('asignations')
   getAssignments()
 })()
 
