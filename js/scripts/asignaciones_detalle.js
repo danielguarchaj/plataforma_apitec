@@ -98,7 +98,6 @@ const setAssignment = assignment => {
       `)
     else
       $('#assignment-delivered-content').append(`<p class="mb-4">No se subió ningún archivo</p>`)
-
     if (assignment.url_assignment)
       $('#assignment-delivered-content').append(`
       <h5 class="mb-4">Url adjunto</h5>
@@ -108,6 +107,35 @@ const setAssignment = assignment => {
     `)
     else
       $('#assignment-delivered-content').append('<p>No se adjuntó ningúna url</p>')
+  }
+}
+
+const UploadAssignment = async () => {
+  const data = new FormData()
+  const file = $('#assignment-file')[0].files[0]
+  const url = $('#assignment-url').val()
+  const assignmentId = getUrlParameter('assignment')
+
+  if (!file && url == '') {
+    showMessage('Error', '<p>Debe adjuntar un archivo o una URL válida</p>')
+    return
+  }
+
+  if (file) data.append('file_assignment', file)
+  if (url != '') data.append('url_assignment', url)
+  data.append('delivered', moment(new Date()).format('Y-MM-DD hh:mm:ss-12'))
+
+  try {
+    const response = await http.patch(`academy/assignments/${assignmentId}/`, data, { headers: { 'Content-Type': 'multipart/form-data' } })
+    if (response.status == 200) {
+      location.reload()
+    }
+  } catch (error) {
+    if(error.response.data.url_assignment[0] == 'Enter a valid URL.') {
+      showMessage('Error de formato', 'Ingrese una URL válida')
+    }else{
+      showMessage('Error de conexión', '<p>No se ha podido completar la entrega, intente nuevamente.</p>')
+    }
   }
 
 }

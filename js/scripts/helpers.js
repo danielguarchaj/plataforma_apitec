@@ -41,3 +41,9 @@ const getDecomposedDatetimeDifference = datetime => {
 
   return difference
 }
+
+const showMessage = (title, body) => {
+  $('#message-modal-title').html(title)
+  $('#message-modal-body').html(body)
+  $('#message-modal').modal('show');
+}

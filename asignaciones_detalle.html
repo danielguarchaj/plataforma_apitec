@@ -75,7 +75,7 @@
           <div class="card-body">
             <h5 class="text-warning hidden" id="assignment-status-pending">La asignación aún no ha sido entregada</h5>
             <h5 class="text-danger hidden" id="assignment-status-expired">La asignación ha expirado</h5>
-            <h5 class="text-info hidden" id="assignment-status-delivered">La asignación ha sido entregada y esta
+            <h5 class="text-info hidden" id="assignment-status-delivered">La asignación ha sido entregada y está
               pendiente de ser calificada</h5>
             <h5 class="text-success hidden" id="assignment-status-reviewed">La asignación ha sido calificada</h5>
           </div>
@@ -111,6 +111,26 @@
         <div class="owl-carousel dashboard-numbers" id="activity-material"></div>
       </div>
     </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="message-modal" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="message-modal-title"></h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body" id="message-modal-body"></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
   </main>
 
   <script src="js/vendor/jquery-3.3.1.min.js"></script>
