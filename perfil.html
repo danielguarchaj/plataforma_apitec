@@ -118,8 +118,16 @@
   </main>
 
   <script src="js/vendor/jquery-3.3.1.min.js"></script>
+
   <script src="js/components/components.js"></script>
   <script src="js/components/initComponents.js"></script>
+
+  <script src="js/scripts/auth.js"></script>
+
+  <script src="js/axios/axios.min.js"></script>
+  <script src="js/axios/http.js"></script>
+  <script src="js/scripts/helpers.js"></script>
+  <script src="js/scripts/perfil.js"></script>
 
   <script src="js/vendor/bootstrap.bundle.min.js"></script>
   <script src="js/vendor/Chart.bundle.min.js"></script>
@@ -141,8 +149,7 @@
   <script src="js/scripts.js"></script>
 
   <script>
-    $('.main-menu-item').removeClass('active')
-    $('.profile-menu-item').addClass('active')
+    SetActiveTabMenu('profile')
   </script>
 
 </body>
