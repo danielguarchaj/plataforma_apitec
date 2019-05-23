@@ -1,7 +1,7 @@
-
 const getAssignments = async () => {
+  const user = JSON.parse(auth.user)
   try {
-    const { data: assignments } = await http.get('academy/assignments/')
+    const { data: assignments } = await http.get('academy/assignments_user/' + user.id)
     populateAssignments(assignments)
   } catch (error) {
     console.log(error)
@@ -140,8 +140,8 @@ const populateAssignments = async assignments => {
 }
 
 (() => {
-  SetActiveTabMenu('asignations')
-  getAssignments()
+  if (auth.checkSession()){
+    SetActiveTabMenu('asignations')
+    getAssignments()
+  }
 })()
-
-

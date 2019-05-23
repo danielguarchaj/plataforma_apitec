@@ -3,11 +3,15 @@ let assignmentStatus = ''
 
 const getAssignment = async () => {
   const assignmentId = getUrlParameter('assignment')
+  const user = JSON.parse(auth.user)
   if (!assignmentId) location.href = 'asignaciones.html'
 
   try {
-    const { data: assignment } = await http.get('academy/assignments/' + assignmentId + '/')
-    setAssignment(assignment)
+    const { data: assignment } = await http.get('academy/assignments/' + assignmentId + '/' + user.id)
+    if ( assignment.id )
+      setAssignment(assignment)
+    else 
+      location.href = 'asignaciones.html'
   } catch (error) {
     console.log(error)
   }
