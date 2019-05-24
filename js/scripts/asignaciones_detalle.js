@@ -128,9 +128,9 @@ const UploadAssignment = async () => {
   if (file) data.append('file_assignment', file)
   if (url != '') data.append('url_assignment', url)
   data.append('delivered', moment(new Date()).format('Y-MM-DD hh:mm:ss-12'))
-
+  const user = JSON.parse(auth.user)
   try {
-    const response = await http.patch(`academy/assignments/${assignmentId}/0/`, data, { headers: { 'Content-Type': 'multipart/form-data' } })
+    const response = await http.patch(`academy/assignments/${assignmentId}/${user.id}/`, data, { headers: { 'Content-Type': 'multipart/form-data' } })
     if (response.status == 200) {
       location.reload()
     }
