@@ -80,9 +80,12 @@
             <h5 class="text-success hidden" id="assignment-status-reviewed">La asignación ha sido calificada</h5>
           </div>
         </div>
+        <div class="card mb-4 hidden" id="assignment-delivered-container">
+          <div class="card-body" id="assignment-delivered-content"></div>
+        </div>
         <div class="card mb-4 hidden" id="assignment-upload-container">
           <div class="card-body">
-            <h5 class="mb-4">Subir archivo</h5>
+            <h5 class="mb-4" id="upload-file-title">Subir archivo</h5>
             <div class="input-group mb-3">
               <input type="file" class="form-control" id="assignment-file">
             </div>
@@ -92,10 +95,6 @@
             </div>
             <button type="button" class="btn btn-outline-info mb-1" onclick="UploadAssignment()"
               id="btn-deliver">Entregar asignación</button>
-          </div>
-        </div>
-        <div class="card mb-4 hidden" id="assignment-delivered-container">
-          <div class="card-body" id="assignment-delivered-content">
           </div>
         </div>
       </div>

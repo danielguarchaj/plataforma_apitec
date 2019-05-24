@@ -5,7 +5,6 @@ const getAssignment = async () => {
   const assignmentId = getUrlParameter('assignment')
   const user = JSON.parse(auth.user)
   if (!assignmentId) location.href = 'asignaciones.html'
-
   try {
     const { data: assignment } = await http.get('academy/assignments/' + assignmentId + '/' + user.id)
     if ( assignment.id )
@@ -15,7 +14,6 @@ const getAssignment = async () => {
   } catch (error) {
     console.log(error)
   }
-
 }
 
 const setAssignment = assignment => {
@@ -51,7 +49,8 @@ const setAssignment = assignment => {
         </a>
       `
     }
-    $('#activity-material').html(materialsHtml)
+    console.log(materialsHtml)
+    // $('#activity-material').html(materialsHtml)
   } else {
     $('#activity-no-material').html('<h1>No hay material de apoyo para esta actividad</h1>')
   }
@@ -84,18 +83,23 @@ const setAssignment = assignment => {
       var differenceDelivered = getDecomposedDatetimeDifference(assignment.delivered)
       $('#assignment-time').html(`${differenceDelivered.days} días ${differenceDelivered.hours} horas y ${differenceDelivered.minutes} minutos`)
       $('#assignment-status').html('Entregado hace')
+      $('#upload-file-title').html('Editar entrega')
+      $('#btn-deliver').html('Editar entrega')
+      $('#btn-deliver').addClass('btn-outline-danger').removeClass('btn-outline-info')
       $('#assignment-time').addClass('text-success')
       $('#assignment-delivered-container').removeClass('hidden')
       $('#assignment-status-delivered').removeClass('hidden')
+      $('#assignment-upload-container').removeClass('hidden')
       break
     default:
       break;
   }
 
   if (assignmentStatus == 'reviewed' || assignmentStatus == 'delivered') {
+    $('#assignment-delivered-content').append('<h5 class="mb-4">Contenido entregado</h5>')
     if (assignment.file_assignment)
-      $('#assignment-delivered-content').append(`
-        <h5 class="mb-4">Archivo subido</h5>
+      $('#assignment-delivered-content').append(`        
+        <h5 class="mb-4">Se adjunto archivo</h5>
         <div class="input-group mb-3">
           <a href="${assignment.file_assignment}">${assignment.file_assignment}</a>
         </div>
@@ -104,7 +108,7 @@ const setAssignment = assignment => {
       $('#assignment-delivered-content').append(`<p class="mb-4">No se subió ningún archivo</p>`)
     if (assignment.url_assignment)
       $('#assignment-delivered-content').append(`
-      <h5 class="mb-4">Url adjunto</h5>
+      <h5 class="mb-4">Se adjunto URL</h5>
       <div class="form-group mt-3">
         <a href="${assignment.url_assignment}">${assignment.url_assignment}</a>
       </div>
@@ -141,7 +145,6 @@ const UploadAssignment = async () => {
       showMessage('Error de conexión', '<p>No se ha podido completar la entrega, intente nuevamente.</p>')
     }
   }
-
 }
 
 (() => {

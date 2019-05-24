@@ -1,3 +1,5 @@
+auth.checkSession()
+
 const getAssignments = async () => {
   const user = JSON.parse(auth.user)
   try {
@@ -139,9 +141,8 @@ const populateAssignments = async assignments => {
 
 }
 
-(() => {
-  if (auth.checkSession()){
-    SetActiveTabMenu('asignations')
-    getAssignments()
-  }
+
+( () => {
+  SetActiveTabMenu('asignations')
+  getAssignments()
 })()

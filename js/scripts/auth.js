@@ -40,12 +40,11 @@ const auth = {
       location.href = 'login.html'
     },
   
-    checkSession() {
+    async checkSession() {
       if (!this.token || !this.user) {
         this.logout()
-        return false
       }
-      return true
+      await this.verifyToken()
     },
   
     userIsLogged() {
@@ -69,7 +68,6 @@ const auth = {
         })
       } catch (error) {
         console.log(error)
-        alert('Sesión expirada')
         this.logout()        
       }
     }
