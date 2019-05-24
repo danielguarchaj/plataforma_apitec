@@ -13,7 +13,7 @@ const auth = {
     },
   
     get user() {
-      return localStorage.getItem(this.USER_DATA)
+      return JSON.parse(localStorage.getItem(this.USER_DATA))
     },
   
     set user(userData) {

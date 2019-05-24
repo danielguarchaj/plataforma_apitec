@@ -1,12 +1,13 @@
+auth.checkSession()
+
 //Global vars
 let assignmentStatus = ''
 
 const getAssignment = async () => {
   const assignmentId = getUrlParameter('assignment')
-  const user = JSON.parse(auth.user)
   if (!assignmentId) location.href = 'asignaciones.html'
   try {
-    const { data: assignment } = await http.get('academy/assignments/' + assignmentId + '/' + user.id)
+    const { data: assignment } = await http.get('academy/assignments/' + assignmentId + '/' + auth.user.id)
     if ( assignment.id )
       setAssignment(assignment)
     else 
@@ -35,22 +36,30 @@ const setAssignment = assignment => {
   if (assignment.activity.support_materials.length > 0) {
     let materialsHtml = ''
     for (const material of assignment.activity.support_materials) {
+      let type = ''
+      switch (material.material_type) {
+        case 'link':
+          type = `<a target="_blank" href="${material.material_url}">Link</a>`
+          break
+        case 'file':
+          type = `<a target="_blank" href="${material.material_file}">Archivo</a>`
+        case 'video':
+          type = `<a target="_blank" href="${material.material_url}">Video</a>`
+        default:
+          break
+      }
       materialsHtml += `
-        <a href="#" class="card">
-          <div class="card-body text-center">
-            <i class="iconsmind-Idea-4"></i>
-            <p class="card-text mb-0">
-              ${material.title}
-            </p>
-            <p class="lead text-center">
-              ${material.material_type}
-            </p>
+        <div class="col-3 mb-4">
+          <div class="card dashboard-small-chart">
+            <div class="card-body text-center">
+              <h4>${material.title}</h4>
+              <p>${type}</p>
+            </div>
           </div>
-        </a>
+        </div>
       `
     }
-    console.log(materialsHtml)
-    // $('#activity-material').html(materialsHtml)
+    $('#activity-material').html(materialsHtml)
   } else {
     $('#activity-no-material').html('<h1>No hay material de apoyo para esta actividad</h1>')
   }
@@ -132,9 +141,9 @@ const UploadAssignment = async () => {
   if (file) data.append('file_assignment', file)
   if (url != '') data.append('url_assignment', url)
   data.append('delivered', moment(new Date()).format('Y-MM-DD hh:mm:ss-12'))
-  const user = JSON.parse(auth.user)
+  const user = auth.user
   try {
-    const response = await http.patch(`academy/assignments/${assignmentId}/${user.id}/`, data, { headers: { 'Content-Type': 'multipart/form-data' } })
+    const response = await http.patch(`academy/assignments/${assignmentId}/${auth.user.id}/`, data, { headers: { 'Content-Type': 'multipart/form-data' } })
     if (response.status == 200) {
       location.reload()
     }
