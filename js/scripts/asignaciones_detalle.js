@@ -130,7 +130,7 @@ const UploadAssignment = async () => {
   data.append('delivered', moment(new Date()).format('Y-MM-DD hh:mm:ss-12'))
 
   try {
-    const response = await http.patch(`academy/assignments/${assignmentId}/`, data, { headers: { 'Content-Type': 'multipart/form-data' } })
+    const response = await http.patch(`academy/assignments/${assignmentId}/0/`, data, { headers: { 'Content-Type': 'multipart/form-data' } })
     if (response.status == 200) {
       location.reload()
     }
