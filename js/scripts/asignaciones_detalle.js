@@ -4,14 +4,11 @@ auth.checkSession()
 let assignmentStatus = ''
 
 const getAssignment = async () => {
-  const assignmentId = getUrlParameter('assignment')
+  const assignmentId = localStorage.assignmentId
   if (!assignmentId) location.href = 'asignaciones.html'
   try {
-    const { data: assignment } = await http.get('academy/assignments/' + assignmentId + '/' + auth.user.id)
-    if ( assignment.id )
-      setAssignment(assignment)
-    else 
-      location.href = 'asignaciones.html'
+    const { data: assignment } = await http.get('academy/assignments/' + auth.user.id + '/' + assignmentId + '/')
+    setAssignment(assignment)
   } catch (error) {
     console.log(error)
   }
@@ -36,121 +33,147 @@ const setAssignment = assignment => {
   if (assignment.activity.support_materials.length > 0) {
     let materialsHtml = ''
     for (const material of assignment.activity.support_materials) {
-      let type = ''
-      switch (material.material_type) {
-        case 'link':
-          type = `<a target="_blank" href="${material.material_url}">Link</a>`
-          break
-        case 'file':
-          type = `<a target="_blank" href="${material.material_file}">Archivo</a>`
-        case 'video':
-          type = `<a target="_blank" href="${material.material_url}">Video</a>`
-        default:
-          break
-      }
-      materialsHtml += `
-        <div class="col-3 mb-4">
-          <div class="card dashboard-small-chart">
-            <div class="card-body text-center">
-              <h4>${material.title}</h4>
-              <p>${type}</p>
+      if (material.material_file)
+        materialsHtml += `
+          <div class="card mb-4">
+            <div class="card-body d-flex justify-content-between align-items-center">
+              <h6 class="mb-0">${material.title}</h6>
+              <a href="${material.material_file}" target="_blank">Ver archivo</a>
             </div>
           </div>
-        </div>
-      `
+        `
+      if (material.material_url)
+        materialsHtml += `
+          <div class="card mb-4">
+            <div class="card-body d-flex justify-content-between align-items-center">
+              <h6 class="mb-0">${material.title}</h6>
+              <a href="${material.material_url}" target="_blank">Ver link</a>
+            </div>
+          </div>
+        `
     }
     $('#activity-material').html(materialsHtml)
   } else {
-    $('#activity-no-material').html('<h1>No hay material de apoyo para esta actividad</h1>')
+    $('#activity-material-title').html('No hay material de apoyo para esta actividad')
   }
 
+  let score = 0
+  for (const delivery of assignment.assignment_deliveries) score += delivery.score
   const difference = getDecomposedDatetimeDifference(assignment.deadline)
   $('#assignment-time').html(`${difference.days} días ${difference.hours} horas y ${difference.minutes} minutos`)
   assignmentStatus = GetAssignmentStatus(assignment)
+  $('#assignment-status').html('Expira en')
+  $('#assignment-time').addClass('text-success')
   switch (assignmentStatus) {
     case 'pending':
-      $('#assignment-status').html('Expira en')
+      $('#assignment-status-title').html('Pendiente').addClass('text-warning')
+      $('#assignment-status-container').append('<i class="simple-icon-clock mt-2 ml-2 text-warning" style="font-size: 25px"></i>')
+      $('#assignment-status-title').html('Pendiente de entregar').addClass('text-warning')
       $('#assignment-upload-container').removeClass('hidden')
-      $('#assignment-status-pending').removeClass('hidden')
-      break;
+      break
     case 'expired':
+      $('#assignment-status-title').html('Pendiente').addClass('text-danger')
+      $('#assignment-status-container').append('<i class="simple-icon-close mt-2 ml-2 text-danger" style="font-size: 25px"></i>')
+      $('#assignment-status-title').html('Expirado').addClass('text-danger')
       $('#assignment-status').html('Expiró hace')
       $('#assignment-time').addClass('text-danger')
-      $('#assignment-status-expired').removeClass('hidden')
+      $('#assignment-upload-container').removeClass('hidden').html('<h1 class="m-5">Ya no puedes subir entregas</h1>')
       break
     case 'reviewed':
-      var differenceDelivered = getDecomposedDatetimeDifference(assignment.delivered)
-      $('#assignment-time').html(`${differenceDelivered.days} días ${differenceDelivered.hours} horas y ${differenceDelivered.minutes} minutos`)
-      $('#assignment-status').html('Entregado hace')
-      $('#assignment-time').addClass('text-success')
       $('#assignment-score-title').html('Puntaje obtenido')
-      $('#activity-value').html(`${assignment.score} / ${assignment.activity.value}`)
+      $('#assignment-status-title').html('Calificado').addClass('text-success')
+      $('#assignment-status-container').append('<i class="simple-icon-check mt-2 ml-2 text-success" style="font-size: 25px"></i>')
+      $('#activity-value').html(`${score} / ${assignment.activity.value}`)
       $('#assignment-delivered-container').removeClass('hidden')
-      $('#assignment-status-reviewed').removeClass('hidden')
       break
     case 'delivered':
-      var differenceDelivered = getDecomposedDatetimeDifference(assignment.delivered)
-      $('#assignment-time').html(`${differenceDelivered.days} días ${differenceDelivered.hours} horas y ${differenceDelivered.minutes} minutos`)
-      $('#assignment-status').html('Entregado hace')
-      $('#upload-file-title').html('Editar entrega')
-      $('#btn-deliver').html('Editar entrega')
-      $('#btn-deliver').addClass('btn-outline-danger').removeClass('btn-outline-info')
-      $('#assignment-time').addClass('text-success')
+      $('#assignment-status-title').html('Entregado').addClass('text-info')
+      $('#assignment-status-container').append('<i class="simple-icon-arrow-up-circle mt-2 ml-2 text-info" style="font-size: 25px"></i>')
       $('#assignment-delivered-container').removeClass('hidden')
-      $('#assignment-status-delivered').removeClass('hidden')
-      $('#assignment-upload-container').removeClass('hidden')
       break
     default:
       break;
   }
 
   if (assignmentStatus == 'reviewed' || assignmentStatus == 'delivered') {
-    $('#assignment-delivered-content').append('<h5 class="mb-4">Contenido entregado</h5>')
-    if (assignment.file_assignment)
-      $('#assignment-delivered-content').append(`        
-        <h5 class="mb-4">Se adjunto archivo</h5>
-        <div class="input-group mb-3">
-          <a href="${assignment.file_assignment}">${assignment.file_assignment}</a>
+    if ( difference.diff < 0) {
+      $('#assignment-status').html('Expiró hace')
+      $('#assignment-time').addClass('text-danger')
+    }else{
+      $('#assignment-upload-container').removeClass('hidden')
+    }
+
+    let deliveriesHtml = ''
+    for (const delivery of assignment.assignment_deliveries) {
+      let fileIcon = ''
+      let linkIcon = ''
+      let deliveryScore = ''
+      let comment = ''
+      if (delivery.anotation) comment = delivery.anotation
+      if (delivery.delivery_file) fileIcon = `
+        <a href="${delivery.delivery_file}" target="_blank" class="mr-3">
+          <i class="iconsmind-File-Link" style="font-size: 40px"></i>
+        </a>
+      `
+      if (delivery.delivery_url) linkIcon = `
+        <a href="${delivery.delivery_url}" target="_blank">
+          <i class="simple-icon-link" style="font-size: 40px"></i>
+        </a>
+      `
+      if (delivery.score) deliveryScore = `Punteo: ${delivery.score} |`
+      deliveriesHtml += `
+        <div class="d-flex flex-row mb-3 pb-3 border-bottom">
+          <div class="pl-3 pr-2">
+            ${fileIcon}
+            ${linkIcon}
+            <p class="font-weight-medium mb-0">${comment}</p>
+            <p class="text-muted mb-1 text-small">${deliveryScore} Entregado: ${moment(delivery.delivered).format('DD/MM/Y hh:mm:ss a')}</p>
+          </div>
         </div>
-      `)
-    else
-      $('#assignment-delivered-content').append(`<p class="mb-4">No se subió ningún archivo</p>`)
-    if (assignment.url_assignment)
-      $('#assignment-delivered-content').append(`
-      <h5 class="mb-4">Se adjunto URL</h5>
-      <div class="form-group mt-3">
-        <a href="${assignment.url_assignment}">${assignment.url_assignment}</a>
-      </div>
-    `)
-    else
-      $('#assignment-delivered-content').append('<p>No se adjuntó ningúna url</p>')
+      `
+    }
+
+    $('#assignment-delivered-content').html(deliveriesHtml)
+
   }
+
 }
 
-const UploadAssignment = async () => {
+const UploadDelivery = async () => {
   const data = new FormData()
   const file = $('#assignment-file')[0].files[0]
   const url = $('#assignment-url').val()
-  const assignmentId = getUrlParameter('assignment')
+  const anotation = $('#assignment-comment').val()
+  const assignmentId = localStorage.assignmentId
+
+  if (!assignmentId) location.href = 'asignaciones.html'
 
   if (!file && url == '') {
     showMessage('Error', '<p>Debe adjuntar un archivo o una URL válida</p>')
     return
   }
 
-  if (file) data.append('file_assignment', file)
-  if (url != '') data.append('url_assignment', url)
+  if (file) data.append('delivery_file', file)
+  if (url != '') data.append('delivery_url', url)
+
   data.append('delivered', moment(new Date()).format('Y-MM-DD hh:mm:ss-12'))
-  const user = auth.user
+  data.append('anotation', anotation)
+  data.append('student', auth.user.id)
+  data.append('assignment_activity', assignmentId)
+  $('#btn-deliver').prop('disabled', true)
+  $('#btn-deliver').html('Subiendo...')
+
   try {
-    const response = await http.patch(`academy/assignments/${assignmentId}/${auth.user.id}/`, data, { headers: { 'Content-Type': 'multipart/form-data' } })
-    if (response.status == 200) {
+    const response = await http.post(`academy/deliveries/`, data, { headers: { 'Content-Type': 'multipart/form-data' } })
+    if (response.status == 201) {
       location.reload()
     }
   } catch (error) {
-    if(error.response.data.url_assignment[0] == 'Enter a valid URL.') {
+    $('#btn-deliver').prop('disabled', false)
+    $('#btn-deliver').html('Subir entrega')
+    if (error.response.data.delivery_url[0] == 'Enter a valid URL.') {
       showMessage('Error de formato', 'Ingrese una URL válida')
-    }else{
+    } else {
       showMessage('Error de conexión', '<p>No se ha podido completar la entrega, intente nuevamente.</p>')
     }
   }

@@ -18,14 +18,12 @@ const GetAssignmentStatus = assignment => {
       return 'expired'
   }
   
-  console.log(assignment.assignment_deliveries.length)
   // Condition for delivered assignments that have been reviewed and pending to be reviewed
 
   let status = 'delivered'
 
   //Check every delivery score related to the assignment
   for (const delivery of assignment.assignment_deliveries) {
-    console.log(delivery)
     // If at least one delivery has a score set, then it has been reviewed, otherwise it hasn't been reviewed
     if (delivery.score) status = 'reviewed'
   }
@@ -41,11 +39,11 @@ const getDecomposedDatetimeDifference = datetime => {
   const currentDate = moment(new Date())
   let deadline = moment(datetime, "Y-MM-DD hh:mm:ss")
   const diff = Math.abs((deadline - currentDate) / (1000 * 60 * 60 * 24))
-
+  
+  difference['diff'] = deadline - currentDate
   difference['days'] = Math.floor(diff)
   difference['hours'] = Math.floor((diff - difference.days) * 24)
   difference['minutes'] = Math.floor( ( ((diff - difference.days) * 24) - difference.hours ) * 60 )
-
   return difference
 }
 

@@ -38,13 +38,15 @@
   <main>
     <div class="row">
       <div class="col-12">
-        <h1 id="activity-title"></h1>
+        <div class="row" id="assignment-status-container">
+          <h1 id="activity-title"></h1><h4 class="ml-3 mt-2 font-weight-bold" id="assignment-status-title"></h4>
+        </div>
         <div class="separator mb-5"></div>
       </div>
     </div>
     <div class="row">
       <div class="col-lg-4 col-12 mb-4">
-        <div class="card mb-4 h-100">
+        <div class="card mb-4">
 
           <div class="card-body">
             <p class="text-muted text-small mb-2">Instrucciones</p>
@@ -65,27 +67,22 @@
 
             <p class="text-muted text-small mb-2" id="assignment-status"></p>
             <p class="mb-3" id="assignment-time"></p>
+
           </div>
         </div>
-
+        <div>
+          <div class="col-12">
+            <h5 id="activity-material-title">Material de apoyo</h5>
+            <div class="separator mb-5"></div>
+          </div>
+        </div>
+        <div id="activity-material"></div>
       </div>
 
       <div class="col-12 col-lg-8">
-        <div class="card mb-4" id="assignemnt-info-container">
-          <div class="card-body">
-            <h5 class="text-warning hidden" id="assignment-status-pending">La asignación aún no ha sido entregada</h5>
-            <h5 class="text-danger hidden" id="assignment-status-expired">La asignación ha expirado</h5>
-            <h5 class="text-info hidden" id="assignment-status-delivered">La asignación ha sido entregada y está
-              pendiente de ser calificada</h5>
-            <h5 class="text-success hidden" id="assignment-status-reviewed">La asignación ha sido calificada</h5>
-          </div>
-        </div>
-        <div class="card mb-4 hidden" id="assignment-delivered-container">
-          <div class="card-body" id="assignment-delivered-content"></div>
-        </div>
         <div class="card mb-4 hidden" id="assignment-upload-container">
           <div class="card-body">
-            <h5 class="mb-4" id="upload-file-title">Subir archivo</h5>
+            <h5 class="mb-4" id="upload-file-title">Subir entrega</h5>
             <div class="input-group mb-3">
               <input type="file" class="form-control" id="assignment-file">
             </div>
@@ -93,22 +90,24 @@
               <label for="">Adjuntar link</label>
               <input type="text" class="form-control" id="assignment-url" placeholder="Adjuntar link de proyecto">
             </div>
-            <button type="button" class="btn btn-outline-info mb-1" onclick="UploadAssignment()"
-              id="btn-deliver">Entregar asignación</button>
+            <div class="form-group mt-3">
+              <label for="">Comentarios</label>
+              <input type="text" class="form-control" id="assignment-comment"
+                placeholder="Escribe un comentario sobre la entrega">
+            </div>
+            <button type="button" class="btn btn-outline-info mb-1" onclick="UploadDelivery()" id="btn-deliver">Subir
+              entrega</button>
           </div>
         </div>
+        <div class="card mb-4 hidden" id="assignment-delivered-container">
+          <div class="card-body">
+            <h5 class="card-title">Entregas</h5>
+            <div id="assignment-delivered-content"></div>
+          </div>
+        </div>
+
       </div>
     </div>
-    <div class="row">
-      <div class="col-12">
-        <h5>Material de apoyo</h5>
-        <div class="separator mb-5"></div>
-      </div>
-    </div>
-
-    <div class="row" id="activity-material"></div>
-    <div class="row" id="activity-no-material"></div>
-
 
     <!-- Modal -->
     <div class="modal fade" id="message-modal" tabindex="-1" role="dialog" aria-hidden="true">
@@ -127,7 +126,6 @@
         </div>
       </div>
     </div>
-
 
   </main>
 

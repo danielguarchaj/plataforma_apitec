@@ -1,5 +1,5 @@
 auth.checkSession()
-
+localStorage.removeItem('assignmentId')
 const getAssignments = async () => {
   try {
     const {data} = await http.get('users/assignments/' + auth.user.id + '/')
@@ -22,6 +22,11 @@ const assignmentExists = (assignments, assignmentId) => {
     if (assignment.id == assignmentId) exists = true
   }
   return exists
+}
+
+const getAssignment = assignmentId => {
+  localStorage.assignmentId = assignmentId
+  location.href='asignaciones_detalle.html'
 }
 
 const populateAssignments = assignments => {
@@ -57,7 +62,7 @@ const populateAssignments = assignments => {
             </td>
             <td>
               <button type="button" class="btn btn-outline-info mb-1"
-                onclick="location.href='asignaciones_detalle.html?assignment=${assignment.id}'">Ver</button>
+                onclick="getAssignment(${assignment.id})">Ver</button>
             </td>
           </tr>
         `
@@ -81,13 +86,15 @@ const populateAssignments = assignments => {
               </td>
               <td>
                 <button type="button" class="btn btn-outline-info mb-1"
-                  onclick="location.href='asignaciones_detalle.html?assignment=${assignment.id}'">Ver</button>
+                  onclick="getAssignment(${assignment.id})">Ver</button>
               </td>
             </tr>
           `
         break
       case 'reviewed':
+        let deliveryScore = 0
         for (const delivery of assignment.assignment_deliveries) {
+          deliveryScore += delivery.score
           proportions.push(delivery.score / assignment.activity.value)
           pointsEarned += delivery.score
         }
@@ -104,11 +111,11 @@ const populateAssignments = assignments => {
                 <p class="text-muted">${moment(assignment.delivered).format('DD/MM/Y hh:mm:ss')}</p>
               </td>
               <td>
-                <p class="text-muted"> ${assignment.score} / ${assignment.activity.value}</p>
+                <p class="text-muted"> ${deliveryScore} / ${assignment.activity.value}</p>
               </td>
               <td>
                 <button type="button" class="btn btn-outline-info mb-1"
-                  onclick="location.href='asignaciones_detalle.html?assignment=${assignment.id}'">Ver</button>
+                  onclick="getAssignment(${assignment.id})">Ver</button>
               </td>
             </tr>
           `
@@ -131,7 +138,7 @@ const populateAssignments = assignments => {
             </td>
             <td>
               <button type="button" class="btn btn-outline-info mb-1"
-                onclick="location.href='asignaciones_detalle.html?assignment=${assignment.id}'">Ver</button>
+                onclick="getAssignment(${assignment.id})">Ver</button>
             </td>
           </tr>
         `
