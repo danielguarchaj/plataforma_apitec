@@ -1,12 +1,16 @@
 auth.checkSession()
 localStorage.removeItem('assignmentId')
+
+
 const getAssignments = async () => {
   try {
-    const {data} = await http.get('users/assignments/' + auth.user.id + '/')
+    const { data } = await http.get('users/assignments/' + auth.user.id + '/')
     let assignments = []
     for (const group of data.student.groups) {
       for (const assignment of group.group_assignments) {
-        if (!assignmentExists(assignments, assignment.id)) assignments.push(assignment)
+        const repeated = assignments.filter(obj => { return obj.activity.id === assignment.activity.id })
+        if (repeated.length == 0)
+          assignments.push(assignment)
       }
     }
     populateAssignments(assignments)
@@ -16,17 +20,9 @@ const getAssignments = async () => {
   }
 }
 
-const assignmentExists = (assignments, assignmentId) => {
-  let exists = false
-  for (const assignment of assignments) {
-    if (assignment.id == assignmentId) exists = true
-  }
-  return exists
-}
-
 const getAssignment = assignmentId => {
   localStorage.assignmentId = assignmentId
-  location.href='asignaciones_detalle.html'
+  location.href = 'asignaciones_detalle.html'
 }
 
 const populateAssignments = assignments => {
@@ -52,10 +48,10 @@ const populateAssignments = assignments => {
               <p class="list-item-heading">${assignment.activity.title}</p>
             </td>
             <td>
-              <p class="text-muted">${moment(assignment.created).format('DD/MM/Y hh:mm:ss')}</p>
+              <p class="text-muted">${moment(assignment.created).format('DD/MM/Y hh:mm:ss a')}</p>
             </td>
             <td>
-              <p class="text-muted">${moment(assignment.deadline).format('DD/MM//Y hh:mm:ss')}</p>
+              <p class="text-muted">${moment(assignment.deadline).format('DD/MM/Y hh:mm:ss a')}</p>
             </td>
             <td>
               <p class="text-muted">${assignment.activity.value}</p>
@@ -76,10 +72,10 @@ const populateAssignments = assignments => {
                 <p class="list-item-heading">${assignment.activity.title}</p>
               </td>
               <td>
-                <p class="text-muted">${moment(assignment.created).format('DD/MM/Y hh:mm:ss')}</p>
+                <p class="text-muted">${moment(assignment.created).format('DD/MM/Y hh:mm:ss a')}</p>
               </td>
               <td>
-                <p class="text-muted">${moment(assignment.deadline).format('DD/MM/Y hh:mm:ss')}</p>
+                <p class="text-muted">${moment(assignment.deadline).format('DD/MM/Y hh:mm:ss a')}</p>
               </td>
               <td>
                 <p class="text-muted">${assignment.activity.value}</p>
@@ -105,10 +101,10 @@ const populateAssignments = assignments => {
                 <p class="list-item-heading">${assignment.activity.title}</p>
               </td>
               <td>
-                <p class="text-muted">${moment(assignment.deadline).format('DD/MM//Y hh:mm:ss')}</p>
+                <p class="text-muted">${moment(assignment.deadline).format('DD/MM/Y hh:mm:ss a')}</p>
               </td>
               <td>
-                <p class="text-muted">${moment(assignment.delivered).format('DD/MM/Y hh:mm:ss')}</p>
+                <p class="text-muted">${moment(assignment.delivered).format('DD/MM/Y hh:mm:ss a')}</p>
               </td>
               <td>
                 <p class="text-muted"> ${deliveryScore} / ${assignment.activity.value}</p>
@@ -128,10 +124,10 @@ const populateAssignments = assignments => {
               <p class="list-item-heading">${assignment.activity.title}</p>
             </td>
             <td>
-              <p class="text-muted">${moment(assignment.deadline).format('DD/MM//Y hh:mm:ss')}</p>
+              <p class="text-muted">${moment(assignment.deadline).format('DD/MM/Y hh:mm:ss a')}</p>
             </td>
             <td>
-              <p class="text-muted">${moment(assignment.delivered).format('DD/MM/Y hh:mm:ss')}</p>
+              <p class="text-muted">${moment(assignment.delivered).format('DD/MM/Y hh:mm:ss a')}</p>
             </td>
             <td>
               <p class="text-muted">${assignment.activity.value}</p>
@@ -164,7 +160,7 @@ const populateAssignments = assignments => {
 }
 
 
-( () => {
+(() => {
   SetActiveTabMenu('asignations')
   getAssignments()
 })()
