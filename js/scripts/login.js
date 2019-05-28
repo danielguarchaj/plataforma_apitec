@@ -23,6 +23,10 @@ const login = async () => {
           'Authorization': 'JWT '.concat(authResponse.token)
         }
       })
+      if (!currentUser.student) {
+        alert('El usuario no tiene un perfil de estudiante, contacte con el administrador.')
+        return
+      }
       auth.login(authResponse.token, currentUser)
     } catch (error) {
       console.log(error)
