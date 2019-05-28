@@ -58,7 +58,7 @@ const setAssignment = assignment => {
   }
 
   let score = 0
-  for (const delivery of assignment.assignment_deliveries) score += delivery.score
+  for (const delivery of assignment.assignment_deliveries) if (delivery.score > score) score = delivery.score
   const difference = getDecomposedDatetimeDifference(assignment.deadline)
   $('#assignment-time').html(`${difference.days} días ${difference.hours} horas y ${difference.minutes} minutos`)
   assignmentStatus = GetAssignmentStatus(assignment)

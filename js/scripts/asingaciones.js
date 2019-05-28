@@ -90,10 +90,8 @@ const populateAssignments = assignments => {
         break
       case 'reviewed':
         let deliveryScore = 0
-        for (const delivery of assignment.assignment_deliveries) {
-          deliveryScore += delivery.score
-          pointsEarned += delivery.score
-        }
+        for (const delivery of assignment.assignment_deliveries) if (delivery.score > deliveryScore) deliveryScore = delivery.score
+        pointsEarned += deliveryScore
         averageScores.push(deliveryScore / assignment.activity.value)
         assignmentsReviewed++
         reviewed += `
