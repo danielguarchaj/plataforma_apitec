@@ -17,7 +17,7 @@ const login = async () => {
     const { data: authResponse } = await http.post('api-token-auth/', credentials)
     const payload = parseJwt(authResponse.token)
     try {
-      const { data: currentUser } = await http.get('users/' + payload.user_id, {
+      const { data: currentUser } = await http.get('users/' + payload.user_id + '/', {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': 'JWT '.concat(authResponse.token)

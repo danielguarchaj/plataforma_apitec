@@ -10,22 +10,29 @@ const GetAssignmentStatus = assignment => {
   let deadline = moment(assignment.deadline, "Y-MM-DD hh:mm:ss")
   const diff = (deadline - currentDate) / (1000 * 60 * 60 * 24)
 
-  //Condition for pending to deliver assignments and expired assignments:
-  if (!assignment.url_assignment && !assignment.file_assignment) {
-    if (diff > 0) // If diff greater than zero, assignment is still pending to deliver
+  // Condition for pending to deliver assignments and expired assignments:
+  if (assignment.assignment_deliveries.length == 0) {
+    if (diff > 0) // If diff greater than zero, assignment it can still be delivered
       return 'pending'
-    else // Assignment is expired
+    else // Assignment has expired
       return 'expired'
   }
-  //Condition for delivered assignments that have been reviewed and pending to be reviewed
-  if (assignment.url_assignment || assignment.file_assignment) {
-    if (assignment.score) // score is set and defined then is a reviewed assignment
-      return 'reviewed'
-    else // score is not set and defined, then it hasn't been reviewed yet but delivered
-      return 'delivered'
-  }
-}
+  
+  console.log(assignment.assignment_deliveries.length)
+  // Condition for delivered assignments that have been reviewed and pending to be reviewed
 
+  let status = 'delivered'
+
+  //Check every delivery score related to the assignment
+  for (const delivery of assignment.assignment_deliveries) {
+    console.log(delivery)
+    // If at least one delivery has a score set, then it has been reviewed, otherwise it hasn't been reviewed
+    if (delivery.score) status = 'reviewed'
+  }
+
+  // return the assignment status
+  return status
+}
 
 // Receives a valid datetime and returns object with difference in days, hours and minutes.
 // Returns ABS value of difference

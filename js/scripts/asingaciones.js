@@ -1,9 +1,14 @@
 auth.checkSession()
 
 const getAssignments = async () => {
-  const user = JSON.parse(auth.user)
   try {
-    const { data: assignments } = await http.get('academy/assignments_user/' + user.id)
+    const {data} = await http.get('users/assignments/' + auth.user.id + '/')
+    let assignments = []
+    for (const group of data.student.groups) {
+      for (const assignment of group.group_assignments) {
+        if (!assignmentExists(assignments, assignment.id)) assignments.push(assignment)
+      }
+    }
     populateAssignments(assignments)
   } catch (error) {
     console.log(error)
@@ -11,7 +16,15 @@ const getAssignments = async () => {
   }
 }
 
-const populateAssignments = async assignments => {
+const assignmentExists = (assignments, assignmentId) => {
+  let exists = false
+  for (const assignment of assignments) {
+    if (assignment.id == assignmentId) exists = true
+  }
+  return exists
+}
+
+const populateAssignments = assignments => {
   let pending = ''
   let delivered = ''
   let reviewed = ''
@@ -74,9 +87,11 @@ const populateAssignments = async assignments => {
           `
         break
       case 'reviewed':
-        pointsEarned += assignment.score
+        for (const delivery of assignment.assignment_deliveries) {
+          proportions.push(delivery.score / assignment.activity.value)
+          pointsEarned += delivery.score
+        }
         assignmentsReviewed++
-        proportions.push(assignment.score / assignment.activity.value)
         reviewed += `
             <tr>
               <td>

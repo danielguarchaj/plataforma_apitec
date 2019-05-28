@@ -1,3 +1,7 @@
+let avatar = ''
+if (auth.user.student.avatar) avatar = auth.user.student.avatar
+
+
 const navbar = `
   <div class="d-flex align-items-center navbar-left">
       <a href="#" class="menu-button d-none d-md-block">
@@ -101,7 +105,7 @@ const navbar = `
               aria-expanded="false">
               <span class="name">${auth.user.first_name} ${auth.user.last_name}</span>
               <span>
-                  <img alt="Profile Picture" src="${auth.user.student.avatar}" />
+                  <img alt="Profile Picture" src="${avatar}" />
               </span>
           </button>
 
