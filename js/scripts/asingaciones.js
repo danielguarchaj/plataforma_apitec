@@ -37,7 +37,7 @@ const populateAssignments = assignments => {
   let assignmentsExpired = 0
   let assignmentsReviewed = 0
 
-  const proportions = []
+  const averageScores = []
 
   for (const assignment of assignments) {
     switch (GetAssignmentStatus(assignment)) {
@@ -66,6 +66,7 @@ const populateAssignments = assignments => {
       case 'expired':
         pointsLost += assignment.activity.value
         assignmentsExpired++
+        averageScores.push(0)
         expired += `
             <tr>
               <td>
@@ -91,9 +92,9 @@ const populateAssignments = assignments => {
         let deliveryScore = 0
         for (const delivery of assignment.assignment_deliveries) {
           deliveryScore += delivery.score
-          proportions.push(delivery.score / assignment.activity.value)
           pointsEarned += delivery.score
         }
+        averageScores.push(deliveryScore / assignment.activity.value)
         assignmentsReviewed++
         reviewed += `
             <tr>
@@ -154,7 +155,7 @@ const populateAssignments = assignments => {
   $('#card-puntos-sumados').html(pointsEarned)
   $('#card-puntos-perdidos').html(pointsLost)
   $('#card-promedio').html(
-    ((proportions.reduce((a, b) => a + b, 0) / proportions.length) * 100).toFixed(2) + '%'
+    ((averageScores.reduce((a, b) => a + b, 0) / averageScores.length) * 100).toFixed(2) + '%'
   )
 
 }
