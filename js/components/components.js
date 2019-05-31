@@ -37,7 +37,7 @@ const navbar = `
     <div class="user d-inline-block">
       <button class="btn btn-empty p-0" type="button" data-toggle="dropdown" aria-haspopup="true"
         aria-expanded="false">
-        <span class="name">${auth.user.first_name} ${auth.user.last_name} | ${auth.user.username}</span>
+        <span class="name" id="student-name-nav">${auth.user.first_name} ${auth.user.last_name} | ${auth.user.username}</span>
         <span>
           <img alt="Profile Picture" src="" id="student-avatar"/>
         </span>
