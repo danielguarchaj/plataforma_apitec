@@ -132,9 +132,7 @@ const setAssignment = assignment => {
         </div>
       `
     }
-
     $('#assignment-delivered-content').html(deliveriesHtml)
-
   }
 
 }

@@ -19,7 +19,14 @@
   <link rel="stylesheet" href="css/vendor/bootstrap-stars.css" />
   <link rel="stylesheet" href="css/vendor/nouislider.min.css" />
   <link rel="stylesheet" href="css/vendor/bootstrap-datepicker3.min.css" />
+  <link rel="stylesheet" href="css/vendor/cropper.min.css" />
   <link rel="stylesheet" href="css/main.css" />
+
+  <style>
+    .dz-error-message {
+      display: none !important;
+    }
+  </style>
 
 </head>
 
@@ -47,10 +54,10 @@
         <div class="col-12">
 
           <button type="button" class="btn btn-outline-secondary mb-5" data-toggle="modal" data-backdrop="static"
-            data-target="#exampleModalRight">Agregar proyecto</button>
+            data-target="#modal-project" onclick="setFormProject()">Agregar proyecto</button>
 
-          <div class="modal fade modal-right" id="exampleModalRight" tabindex="-1" role="dialog"
-            aria-labelledby="exampleModalRight" aria-hidden="true">
+          <div class="modal fade modal-right" id="modal-project" tabindex="-1" role="dialog"
+            aria-labelledby="modal-project" aria-hidden="true">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
@@ -60,40 +67,21 @@
                   </button>
                 </div>
                 <div class="modal-body">
-
                   <form>
                     <div class="form-group">
-                      <label>Title</label>
-                      <input type="text" class="form-control" placeholder="">
+                      <label>Título</label>
+                      <input type="text" class="form-control" placeholder="Título del proyecto" id="project-title">
                     </div>
                     <div class="form-group">
-                      <label>Details</label>
-                      <textarea placeholder="" class="form-control" rows="2"></textarea>
+                      <label>URL</label>
+                      <input type="text" class="form-control" placeholder="URL al proyecto" id="project-url">
                     </div>
-
-                    <div class="form-group">
-                      <label>Category</label>
-                      <select class="form-control">
-                        <option label="&nbsp;">&nbsp;</option>
-                        <option value="Flexbox">Flexbox</option>
-                        <option value="Sass">Sass</option>
-                        <option value="React">React</option>
-                      </select>
-                    </div>
-
-                    <div class="form-group">
-                      <label>Status</label>
-                      <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="customCheck1">
-                        <label class="custom-control-label" for="customCheck1">Completed</label>
-                      </div>
-                    </div>
+                    <div id="project-image-exists"></div>
+                    <h5 class="mb-1 mt-1">Seleccionar imagen para subir</h5>
+                    <input type="file" id="project-image-upload" name="file" accept=".jpg,.jpeg,.png,.gif,.bmp,.tiff">
                   </form>
                 </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Cancel</button>
-                  <button type="button" class="btn btn-primary">Submit</button>
-                </div>
+                <div class="modal-footer" id="modal-project-footer"></div>
               </div>
             </div>
           </div>
@@ -104,181 +92,33 @@
               <table class="data-table responsive nowrap" data-order="[[ 1, &quot;desc&quot; ]]">
                 <thead>
                   <tr>
-                    <th>Title</th>
-                    <th>Description</th>
-                    <th>Link</th>
-                    <th>Image</th>
+                    <th>Título</th>
+                    <th>URL</th>
+                    <th>Imagen</th>
                     <th>Opciones</th>
                   </tr>
                 </thead>
-                <tbody>
-                  <tr>
-                    <td>
-                      <p class="list-item-heading">Project title</p>
-                    </td>
-                    <td>
-                      <p class="text-muted">Project description paragraph</p>
-                    </td>
-                    <td>
-                      <p class="text-muted"><a href="#">This is my link to my project</a></p>
-                    </td>
-                    <td>
-                      <p class="text-muted">Placeholder</p>
-                    </td>
-                    <td>
-                      <button type="button" class="btn btn-outline-info mb-1">Edit</button>
-                      <button type="button" class="btn btn-outline-danger mb-1">Delete</button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <p class="list-item-heading">Project title</p>
-                    </td>
-                    <td>
-                      <p class="text-muted">Project description paragraph</p>
-                    </td>
-                    <td>
-                      <p class="text-muted"><a href="#">This is my link to my project</a></p>
-                    </td>
-                    <td>
-                      <p class="text-muted">Placeholder</p>
-                    </td>
-                    <td>
-                      <button type="button" class="btn btn-outline-info mb-1">Edit</button>
-                      <button type="button" class="btn btn-outline-danger mb-1">Delete</button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <p class="list-item-heading">Project title</p>
-                    </td>
-                    <td>
-                      <p class="text-muted">Project description paragraph</p>
-                    </td>
-                    <td>
-                      <p class="text-muted"><a href="#">This is my link to my project</a></p>
-                    </td>
-                    <td>
-                      <p class="text-muted">Placeholder</p>
-                    </td>
-                    <td>
-                      <button type="button" class="btn btn-outline-info mb-1">Edit</button>
-                      <button type="button" class="btn btn-outline-danger mb-1">Delete</button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <p class="list-item-heading">Project title</p>
-                    </td>
-                    <td>
-                      <p class="text-muted">Project description paragraph</p>
-                    </td>
-                    <td>
-                      <p class="text-muted"><a href="#">This is my link to my project</a></p>
-                    </td>
-                    <td>
-                      <p class="text-muted">Placeholder</p>
-                    </td>
-                    <td>
-                      <button type="button" class="btn btn-outline-info mb-1">Edit</button>
-                      <button type="button" class="btn btn-outline-danger mb-1">Delete</button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <p class="list-item-heading">Project title</p>
-                    </td>
-                    <td>
-                      <p class="text-muted">Project description paragraph</p>
-                    </td>
-                    <td>
-                      <p class="text-muted"><a href="#">This is my link to my project</a></p>
-                    </td>
-                    <td>
-                      <p class="text-muted">Placeholder</p>
-                    </td>
-                    <td>
-                      <button type="button" class="btn btn-outline-info mb-1">Edit</button>
-                      <button type="button" class="btn btn-outline-danger mb-1">Delete</button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <p class="list-item-heading">Project title</p>
-                    </td>
-                    <td>
-                      <p class="text-muted">Project description paragraph</p>
-                    </td>
-                    <td>
-                      <p class="text-muted"><a href="#">This is my link to my project</a></p>
-                    </td>
-                    <td>
-                      <p class="text-muted">Placeholder</p>
-                    </td>
-                    <td>
-                      <button type="button" class="btn btn-outline-info mb-1">Edit</button>
-                      <button type="button" class="btn btn-outline-danger mb-1">Delete</button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <p class="list-item-heading">Project title</p>
-                    </td>
-                    <td>
-                      <p class="text-muted">Project description paragraph</p>
-                    </td>
-                    <td>
-                      <p class="text-muted"><a href="#">This is my link to my project</a></p>
-                    </td>
-                    <td>
-                      <p class="text-muted">Placeholder</p>
-                    </td>
-                    <td>
-                      <button type="button" class="btn btn-outline-info mb-1">Edit</button>
-                      <button type="button" class="btn btn-outline-danger mb-1">Delete</button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <p class="list-item-heading">Project title</p>
-                    </td>
-                    <td>
-                      <p class="text-muted">Project description paragraph</p>
-                    </td>
-                    <td>
-                      <p class="text-muted"><a href="#">This is my link to my project</a></p>
-                    </td>
-                    <td>
-                      <p class="text-muted">Placeholder</p>
-                    </td>
-                    <td>
-                      <button type="button" class="btn btn-outline-info mb-1">Edit</button>
-                      <button type="button" class="btn btn-outline-danger mb-1">Delete</button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <p class="list-item-heading">Project title</p>
-                    </td>
-                    <td>
-                      <p class="text-muted">Project description paragraph</p>
-                    </td>
-                    <td>
-                      <p class="text-muted"><a href="#">This is my link to my project</a></p>
-                    </td>
-                    <td>
-                      <p class="text-muted">Placeholder</p>
-                    </td>
-                    <td>
-                      <button type="button" class="btn btn-outline-info mb-1">Edit</button>
-                      <button type="button" class="btn btn-outline-danger mb-1">Delete</button>
-                    </td>
-                  </tr>
-                </tbody>
+                <tbody id="projects-tbody"></tbody>
               </table>
             </div>
           </div>
-
+          <!-- Modal -->
+          <div class="modal fade" id="message-modal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="message-modal-title"></h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body" id="message-modal-body"></div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+              </div>
+            </div>
+          </div>
 
         </div>
       </div>
@@ -286,14 +126,14 @@
   </main>
 
   <script src="js/vendor/jquery-3.3.1.min.js"></script>
+  <script src="js/axios/axios.min.js"></script>
 
   <script src="js/scripts/auth.js"></script>
+  <script src="js/axios/http.js"></script>
 
   <script src="js/components/components.js"></script>
   <script src="js/components/initComponents.js"></script>
 
-  <script src="js/axios/axios.min.js"></script>
-  <script src="js/axios/http.js"></script>
   <script src="js/scripts/helpers.js"></script>
   <script src="js/scripts/portafolio.js"></script>
 
@@ -313,13 +153,8 @@
   <script src="js/vendor/Sortable.js"></script>
   <script src="js/vendor/mousetrap.min.js"></script>
   <script src="js/dore.script.js"></script>
-  <script src="js/vendor/dropzone.min.js"></script>
+  <script src="js/vendor/cropper.min.js"></script>
   <script src="js/scripts.js"></script>
-
-  <script>
-    SetActiveTabMenu('portfolio')
-  </script>
-
 </body>
 
 </html>
